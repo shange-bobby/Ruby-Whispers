@@ -1,1 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Ruby Whisper | Brilliance meets Rarity</title>
+  <!-- Google Fonts for elegant typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      background-color: #0a0705;  /* deep charcoal with warmth */
+      font-family: 'Inter', sans-serif;
+      color: #f3ede8;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1e1712;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #b83b2e;
+      border-radius: 8px;
+    }
+
+    /* main container */
+    .site-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      position: relative;
+    }
+
+    /* background ruby glow (abstract) */
+    .glow-orb {
+      position: fixed;
+      top: -20vh;
+      right: -10vw;
+      width: 80vmax;
+      height: 80vmax;
+      background: radial-gradient(circle, rgba(180, 50, 40, 0.2) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-orb-left {
+      left: -20vw;
+      top: 40vh;
+      width: 70vmax;
+      height: 70vmax;
+      background: radial-gradient(circle, rgba(150, 35, 28, 0.15) 0%, rgba(0,0,0,0) 70%);
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* header / logo area */
+    .brand-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 5rem;
+      border-bottom: 1px solid rgba(200, 80, 70, 0.3);
+      padding-bottom: 1.2rem;
+    }
+    .logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #f0cfc0, #e09e8e, #c24734);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .logo p {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #cf9f8f;
+      margin-top: 6px;
+      font-weight: 300;
+    }
+    .tagline-meta {
+      font-size: 0.9rem;
+      font-weight: 300;
+      background: rgba(50, 30, 25, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      border: 0.5px solid rgba(200, 90, 70, 0.5);
+    }
+
+    /* Hero section: "Ruby Whisper" + central quote */
+    .hero {
+      text-align: center;
+      margin: 4rem 0 6rem;
+    }
+    .ruby-icon {
+      font-size: 3.2rem;
+      color: #d44c38;
+      filter: drop-shadow(0 0 8px rgba(210, 70, 50, 0.5));
+      margin-bottom: 1rem;
+    }
+    .hero h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff0e6, #f5bcab, #e26a54);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero .whisper-sub {
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      margin-top: 0.8rem;
+      color: #ecc9bd;
+      text-transform: uppercase;
+    }
+    .brilliance-quote {
+      margin-top: 2.5rem;
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 300;
+      border-top: 1px solid rgba(210, 100, 80, 0.4);
+      border-bottom: 1px solid rgba(210, 100, 80, 0.4);
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      backdrop-filter: blur(4px);
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .brilliance-quote span {
+      font-weight: 600;
+      color: #e6836e;
+    }
+
+    /* card grid: "CHECK GO NOW" and "GO MORE THAN LIFEGANG" integration */
+    .action-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+      margin: 5rem 0 6rem;
+    }
+    .card {
+      background: rgba(20, 12, 9, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(200, 85, 70, 0.4);
+      border-radius: 48px;
+      padding: 2.8rem 2rem;
+      width: 320px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #d44a36;
+      box-shadow: 0 25px 40px -12px rgba(190, 60, 45, 0.3);
+      background: rgba(30, 18, 14, 0.8);
+    }
+    .card i {
+      font-size: 3rem;
+      color: #d95a44;
+      margin-bottom: 1.2rem;
+    }
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: #d4bcb2;
+      margin: 1rem 0 1.8rem;
+    }
+    .btn-ruby {
+      background: transparent;
+      border: 1.5px solid #c95c48;
+      color: #f3ded6;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.25s;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-ruby:hover {
+      background: #c95c48;
+      color: #0a0705;
+      border-color: #c95c48;
+      box-shadow: 0 0 10px rgba(201, 92, 72, 0.5);
+    }
+
+    /* "GO MORE THAN LIFEGANG" special banner */
+    .lifegang-section {
+      background: linear-gradient(115deg, #0f0b09 0%, #1c120e 100%);
+      border-radius: 60px;
+      padding: 2.5rem 2rem;
+      margin: 4rem 0 5rem;
+      text-align: center;
+      border: 1px solid rgba(200, 80, 60, 0.6);
+      box-shadow: 0 15px 30px -12px black;
+    }
+    .lifegang-section h4 {
+      font-size: 0.9rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: #e2a18f;
+      margin-bottom: 1rem;
+    }
+    .lifegang-motto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      background: linear-gradient(to right, #f9e0d4, #ec9b86, #ff7b60);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      word-break: keep-all;
+    }
+    .lifegang-sub {
+      margin-top: 1.2rem;
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #c7a797;
+    }
+
+    /* gemstone showcase / extra rarity */
+    .rarity-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: center;
+      margin: 5rem 0 3rem;
+      background: rgba(0,0,0,0.2);
+      border-radius: 50px;
+      padding: 2rem;
+    }
+    .rarity-text {
+      flex: 1;
+    }
+    .rarity-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 500;
+      border-left: 4px solid #d65842;
+      padding-left: 1.5rem;
+    }
+    .rarity-text p {
+      margin-top: 1rem;
+      color: #cfbcb3;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .gem-icons {
+      flex: 1;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      font-size: 3rem;
+      color: #b94a38;
+    }
+    .gem-icons i {
+      transition: all 0.2s;
+      filter: drop-shadow(0 0 6px rgba(210, 80, 60, 0.6));
+    }
+
+    /* footer & CTA */
+    .footer-cta {
+      margin-top: 5rem;
+      text-align: center;
+      border-top: 1px solid rgba(200, 85, 70, 0.3);
+      padding-top: 2.5rem;
+    }
+    .cta-button {
+      background: linear-gradient(95deg, #ac3b2a, #c94d38);
+      border: none;
+      padding: 1rem 2.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      color: #0f0b09;
+      transition: 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 14px rgba(180, 50, 30, 0.3);
+    }
+    .cta-button:hover {
+      background: linear-gradient(95deg, #d14c36, #e2634b);
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(190, 60, 40, 0.5);
+    }
+    .copyright {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      letter-spacing: 1px;
+    }
+
+    /* responsive */
+    @media (max-width: 760px) {
+      .site-wrapper {
+        padding: 1rem 1.2rem 2.5rem;
+      }
+      .hero h2 {
+        font-size: 3rem;
+      }
+      .hero .whisper-sub {
+        font-size: 1rem;
+      }
+      .lifegang-motto {
+        font-size: 2rem;
+      }
+      .card {
+        width: 280px;
+        padding: 1.8rem 1rem;
+      }
+      .rarity-showcase {
+        flex-direction: column;
+        text-align: center;
+      }
+      .rarity-text h3 {
+        border-left: none;
+        border-bottom: 2px solid #d65842;
+        padding-bottom: 0.5rem;
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="glow-orb"></div>
+<div class="glow-orb-left"></div>
+<div class="site-wrapper">
+  <div class="content">
+    <!-- header with ruby whisper identity -->
+    <div class="brand-header">
+      <div class="logo">
+        <h1>RUBY WHISPER</h1>
+        <p>"Where Brilliance meets Rarity"</p>
+      </div>
+      <div class="tagline-meta">
+        <i class="fas fa-gem" style="margin-right: 6px;"></i> limited essence
+      </div>
+    </div>
+
+    <!-- hero area with main tagline and ruby essence -->
+    <div class="hero">
+      <div class="ruby-icon">
+        <i class="fas fa-crown"></i> <i class="fas fa-gem"></i>
+      </div>
+      <h2>RUBY<br>WHISPER</h2>
+      <div class="whisper-sub">Where Brilliance meets Rarity</div>
+      <div class="brilliance-quote">
+        <span>✦</span> ignite the inner fire <span>✦</span>
+      </div>
+    </div>
+
+    <!-- core call to action: "CHECK GO NOW" integrated with a powerful card -->
+    <div class="action-cards">
+      <div class="card">
+        <i class="fas fa-check-circle"></i>
+        <h3>CHECK · GO · NOW</h3>
+        <p>Unlock exclusive pathways, rare editions & immersive experiences. Verify your access to the inner circle of brilliance.</p>
+        <button class="btn-ruby" id="checkGoBtn">Activate Now <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="card">
+        <i class="fas fa-chart-line"></i>
+        <h3>GO MORE</h3>
+        <p>Transcend ordinary limits. Elevate your journey beyond the expected. Embrace the rare momentum.</p>
+        <button class="btn-ruby" id="goMoreBtn">Elevate <i class="fas fa-bolt"></i></button>
+      </div>
+    </div>
+
+    <!-- Special section: "GO MORE THAN LIFEGANG" (exact brand phrase) -->
+    <div class="lifegang-section">
+      <h4><i class="fas fa-infinity"></i> THE NEW VANGUARD</h4>
+      <div class="lifegang-motto">
+        GO MORE THAN LIFEGANG
+      </div>
+      <div class="lifegang-sub">
+        Break the cycle. Rise beyond the conventional. For those who dare to claim the ruby spirit.
+      </div>
+    </div>
+
+    <!-- Rarity showcase: explaining brilliance & rarity (text from prompt) -->
+    <div class="rarity-showcase">
+      <div class="rarity-text">
+        <h3>Where Brilliance meets Rarity</h3>
+        <p>Every whisper of ruby carries an untold story — forged in fire, polished by time. Only the few who seek authentic excellence will discover the secret dimensions. The Ruby Whisper movement embodies fearless sophistication and singular vision. <strong>Rarity is not an option, it's the standard.</strong></p>
+      </div>
+      <div class="gem-icons">
+        <i class="fas fa-gem"></i>
+        <i class="fas fa-fire"></i>
+        <i class="fas fa-star-of-life"></i>
+      </div>
+    </div>
+
+    <!-- final CTA & footer to reiterate CHECK GO NOW / LIFEGANG -->
+    <div class="footer-cta">
+      <button class="cta-button" id="masterCtaBtn">✦ CHECK GO NOW ✦</button>
+      <div class="copyright">
+        <i class="far fa-copyright"></i> RUBY WHISPER — brilliance & rarity incarnate. <br> Transcend the Lifegang.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- simple interactive JavaScript to reflect call-to-actions and alert / confirm the brand message -->
+<script>
+  (function() {
+    // Capture elements
+    const checkGoBtn = document.getElementById('checkGoBtn');
+    const goMoreBtn = document.getElementById('goMoreBtn');
+    const masterCta = document.getElementById('masterCtaBtn');
+
+    // handler for "CHECK GO NOW"
+    function handleCheckGo() {
+      // create a stylish modal-style alert (simulate interactive brand experience)
+      const userConfirmed = confirm("⚡ RUBY WHISPER // CHECK GO NOW\n\nAre you ready to step into the realm where brilliance meets rarity? Unlock exclusive access and go beyond the ordinary.");
+      if (userConfirmed) {
+        alert("✨ ACCESS GRANTED ✨\nYou have activated the Ruby current. Prepare to Go More Than Lifegang.\n\n\"Rarity is your compass.\"");
+        // additional effect: console & optional visual spark
+        console.log("Ruby Whisper: CHECK GO NOW activated — brilliance engaged.");
+      } else {
+        alert("The whisper lingers… whenever you're ready, brilliance awaits.");
+      }
+    }
+
+    // handler for "GO MORE" -> phrase "GO MORE THAN LIFEGANG"
+    function handleGoMore() {
+      const msg = "🔥 GO MORE THAN LIFEGANG 🔥\n\nTranscend limits, embrace rarity, and rise beyond every shadow of mediocrity. This is the path of the Ruby.";
+      alert(msg);
+      // also show an elegant inline feedback? optional console
+      console.log("Ruby Whisper: GO MORE THAN LIFEGANG — activated.");
+    }
+
+    // master CTA from footer also uses "CHECK GO NOW" plus adds Lifegang spirit
+    function handleMasterCTA() {
+      const decision = confirm("✦ RUBY WHISPER: CHECK GO NOW ✦\n\n\"Where Brilliance meets Rarity\"\nAre you ready to go more than Lifegang?");
+      if (decision) {
+        alert("You've taken the first step. Welcome to a new dimension of rare excellence. The Ruby Whispers will guide you.");
+        // bonus: dynamic page effect? not needed but create tiny ripple class
+        document.body.style.transition = "0.2s";
+        document.body.style.backgroundColor = "#120c09";
+        setTimeout(() => { document.body.style.backgroundColor = ""; }, 300);
+      } else {
+        alert("Return anytime. The ruby’s glow never fades.");
+      }
+    }
+
+    // attach events
+    if (checkGoBtn) checkGoBtn.addEventListener('click', handleCheckGo);
+    if (goMoreBtn) goMoreBtn.addEventListener('click', handleGoMore);
+    if (masterCta) masterCta.addEventListener('click', handleMasterCTA);
+
+    // additional: add some sparkle to the card hover, but style already there.
+    // optional: console welcome message
+    console.log("RUBY WHISPER • Brilliance meets Rarity • CHECK GO NOW • GO MORE THAN LIFEGANG");
+  })();
+</script>
+</body>
+</html>
