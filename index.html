@@ -18,11 +18,41 @@
     }
 
     body {
-      background-color: #0a0705;  /* deep charcoal with warmth */
+      background-color: #0a0705;
       font-family: 'Inter', sans-serif;
       color: #f3ede8;
       line-height: 1.4;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* CINEMATIC RED GEM BACKGROUND IMAGE - full screen */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.pexels.com/photos/1287567/red-gemstone-close-up-1287567.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.25;
+      z-index: -2;
+      pointer-events: none;
+    }
+    /* Dark gradient overlay to keep text readable and add depth */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(10,7,5,0.4) 0%, rgba(10,7,5,0.85) 100%);
+      z-index: -1;
+      pointer-events: none;
     }
 
     /* custom scrollbar */
@@ -37,22 +67,23 @@
       border-radius: 8px;
     }
 
-    /* main container - extra padding for more scroll space */
+    /* main container */
     .site-wrapper {
       max-width: 1400px;
       margin: 0 auto;
       padding: 2rem 2rem 6rem;
       position: relative;
+      z-index: 2;
     }
 
-    /* background ruby glow (abstract) */
+    /* background ruby glow (abstract) - optional but keep for atmosphere */
     .glow-orb {
       position: fixed;
       top: -20vh;
       right: -10vw;
       width: 80vmax;
       height: 80vmax;
-      background: radial-gradient(circle, rgba(180, 50, 40, 0.2) 0%, rgba(0,0,0,0) 70%);
+      background: radial-gradient(circle, rgba(180, 50, 40, 0.15) 0%, rgba(0,0,0,0) 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
@@ -62,7 +93,7 @@
       top: 40vh;
       width: 70vmax;
       height: 70vmax;
-      background: radial-gradient(circle, rgba(150, 35, 28, 0.15) 0%, rgba(0,0,0,0) 70%);
+      background: radial-gradient(circle, rgba(150, 35, 28, 0.1) 0%, rgba(0,0,0,0) 70%);
       position: fixed;
       pointer-events: none;
       z-index: 0;
@@ -70,17 +101,17 @@
 
     .content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
-    /* Header with home button */
+    /* Header with home button - borderless and smaller */
     .brand-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       margin-bottom: 3rem;
-      border-bottom: 1px solid rgba(200, 80, 70, 0.3);
+      border-bottom: 1px solid rgba(200, 80, 70, 0.25);
       padding-bottom: 1.2rem;
     }
     .logo h1 {
@@ -102,35 +133,39 @@
       margin-top: 6px;
       font-weight: 300;
     }
-    /* Home Button Styles */
+    /* Home Button - NO BORDERS, smaller size, elegant */
     .home-button {
-      background: rgba(30, 18, 14, 0.7);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(200, 85, 70, 0.5);
-      border-radius: 50px;
-      padding: 0.6rem 1.5rem;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      padding: 0.3rem 0.8rem;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       font-family: 'Inter', sans-serif;
-      font-weight: 500;
+      font-weight: 400;
       color: #ecc9bd;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      border-radius: 30px;
     }
     .home-button i {
-      font-size: 1rem;
+      font-size: 0.85rem;
       color: #d95a44;
+      transition: 0.2s;
     }
     .home-button:hover {
-      background: rgba(201, 92, 72, 0.3);
-      border-color: #d44a36;
-      transform: translateY(-2px);
       color: #f3ede8;
+      transform: translateY(-1px);
+    }
+    .home-button:hover i {
+      color: #e6836e;
+      text-shadow: 0 0 5px rgba(210, 70, 50, 0.4);
     }
 
-    /* Hero section - cleaned: no image, only title and fancy tagline */
+    /* Hero section - cleaned */
     .hero {
       text-align: center;
       margin: 2rem 0 4rem;
@@ -179,7 +214,7 @@
       color: #e6836e;
     }
 
-    /* card grid: single action card - clean background, no image */
+    /* card grid: single action card - clean background */
     .action-cards {
       display: flex;
       flex-wrap: wrap;
@@ -188,23 +223,22 @@
       margin: 4rem 0 5rem;
     }
     .card {
-      background: rgba(20, 12, 9, 0.85);
+      background: rgba(20, 12, 9, 0.75);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(200, 85, 70, 0.5);
+      border: 1px solid rgba(200, 85, 70, 0.45);
       border-radius: 48px;
       padding: 2.8rem 2rem;
       width: 360px;
       text-align: center;
       transition: all 0.3s ease;
-      box-shadow: 0 20px 35px -15px rgba(0,0,0,0.6);
+      box-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
       position: relative;
-      /* No background image - clean */
     }
     .card:hover {
       transform: translateY(-8px);
       border-color: #d44a36;
       box-shadow: 0 25px 40px -12px rgba(190, 60, 45, 0.4);
-      background: rgba(30, 18, 14, 0.9);
+      background: rgba(30, 18, 14, 0.85);
     }
     .card i {
       font-size: 3rem;
@@ -220,7 +254,7 @@
       font-weight: 500;
     }
     .btn-ruby {
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.55);
       backdrop-filter: blur(8px);
       border: 1.5px solid #e27a64;
       color: #fff0e6;
@@ -257,12 +291,13 @@
 
     /* Lifegang Section */
     .lifegang-section {
-      background: linear-gradient(115deg, #0f0b09 0%, #1c120e 100%);
+      background: linear-gradient(115deg, #0f0b09cc 0%, #1c120ecc 100%);
+      backdrop-filter: blur(8px);
       border-radius: 60px;
       padding: 2.5rem 2rem;
       margin: 3rem 0 4rem;
       text-align: center;
-      border: 1px solid rgba(200, 80, 60, 0.6);
+      border: 1px solid rgba(200, 80, 60, 0.5);
       box-shadow: 0 15px 30px -12px black;
     }
     .lifegang-section h4 {
@@ -302,7 +337,8 @@
       justify-content: space-between;
       align-items: center;
       margin: 3rem 0 5rem;
-      background: rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
       border-radius: 50px;
       padding: 2rem;
     }
@@ -435,15 +471,16 @@
       letter-spacing: 1px;
     }
 
-    /* Scroll to top button (smooth home behavior) */
+    /* Scroll to top button */
     .scroll-top-btn {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: #c94d38;
+      background: #c94d38cc;
+      backdrop-filter: blur(4px);
       color: #0a0705;
-      width: 45px;
-      height: 45px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -452,7 +489,7 @@
       opacity: 0;
       transition: all 0.3s ease;
       border: none;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       z-index: 99;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
@@ -502,6 +539,10 @@
         flex-direction: row;
         justify-content: space-between;
       }
+      .home-button {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+      }
     }
   </style>
 </head>
@@ -510,33 +551,32 @@
 <div class="glow-orb-left"></div>
 <div class="site-wrapper">
   <div class="content">
-    <!-- Header with home button -->
+    <!-- Header with borderless home button (smaller) -->
     <div class="brand-header">
       <div class="logo">
         <h1>RUBY WHISPER</h1>
         <p>"Where Brilliance meets Rarity"</p>
       </div>
-      <!-- Home Button -->
+      <!-- Home Button - NO BORDERS, compact -->
       <div class="home-button" id="homeButton">
         <i class="fas fa-home"></i>
         <span>HOME</span>
       </div>
     </div>
 
-    <!-- Hero area: NO image above title, only title + fancy tagline -->
+    <!-- Hero area: title + fancy tagline -->
     <div class="hero">
       <div class="ruby-icon">
         <i class="fas fa-crown"></i> <i class="fas fa-gem"></i>
       </div>
       <h2>RUBY<br>WHISPER</h2>
-      <!-- Fancy script font for "Where Brilliance meets Rarity" -->
       <div class="whisper-sub">Where Brilliance meets Rarity</div>
       <div class="brilliance-quote">
         <span>✦</span> time to shine <span>✦</span>
       </div>
     </div>
 
-    <!-- Action Card: Clean (no image background) with UP arrow -->
+    <!-- Action Card: Clean with UP arrow -->
     <div class="action-cards">
       <div class="card">
         <i class="fas fa-hand-pointer"></i>
@@ -572,10 +612,10 @@
       </div>
     </div>
 
-    <!-- Extra spacer for more scrolling -->
+    <!-- Extra spacer -->
     <div class="scroll-spacer"></div>
 
-    <!-- SOCIAL HUB: Instagram, Facebook, TikTok -->
+    <!-- SOCIAL HUB -->
     <div class="social-hub">
       <h3>✦ join the whisper ✦</h3>
       <p>Follow our journey into brilliance & rarity. Connect with the movement.</p>
@@ -595,7 +635,7 @@
       </div>
     </div>
 
-    <!-- Footer CTA & copyright -->
+    <!-- Footer CTA -->
     <div class="footer-cta">
       <button class="cta-button" id="masterCtaBtn">✦ AWAKEN THE WHISPER ✦</button>
       <div class="copyright">
@@ -605,7 +645,7 @@
   </div>
 </div>
 
-<!-- Scroll to top button (extra home/navigation feature) -->
+<!-- Scroll to top button -->
 <div class="scroll-top-btn" id="scrollTopBtn">
   <i class="fas fa-arrow-up"></i>
 </div>
@@ -617,7 +657,7 @@
     const homeBtn = document.getElementById('homeButton');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     
-    // Social links (example placeholders)
+    // Social links
     const instagramLink = document.getElementById('instagramLink');
     const facebookLink = document.getElementById('facebookLink');
     const tiktokLink = document.getElementById('tiktokLink');
@@ -641,12 +681,11 @@
       });
     }
 
-    // Main action handler (Tap this! with up arrow)
     function handleMainAction() {
       const userConfirmed = confirm("⚡ RUBY WHISPER // ACTIVATE THE WHISPER\n\nAre you ready to step into the realm where brilliance meets rarity? Unlock exclusive access and go beyond the ordinary.");
       if (userConfirmed) {
         alert("✨ ACCESS GRANTED ✨\nYou have activated the Ruby current. Prepare to Go More Than Lifegang.\n\n\"Rarity is your compass.\"");
-        console.log("Ruby Whisper: Main action activated — brilliance engaged.");
+        console.log("Ruby Whisper: Main action activated");
         if (checkGoBtn) {
           checkGoBtn.style.transform = "scale(0.98)";
           setTimeout(() => { if(checkGoBtn) checkGoBtn.style.transform = ""; }, 150);
@@ -659,7 +698,7 @@
     function handleMasterCTA() {
       const decision = confirm("✦ RUBY WHISPER: AWAKEN THE WHISPER ✦\n\n\"Where Brilliance meets Rarity\"\nAre you ready to go more than Lifegang?");
       if (decision) {
-        alert("You've taken the first step. Welcome to a new dimension of rare excellence. The Ruby Whispers will guide you.");
+        alert("You've taken the first step. Welcome to a new dimension of rare excellence.");
         document.body.style.transition = "0.2s";
         document.body.style.backgroundColor = "#120c09";
         setTimeout(() => { document.body.style.backgroundColor = ""; }, 300);
@@ -668,15 +707,10 @@
       }
     }
 
-    // Home button functionality: smooth scroll to top
     function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Show/hide scroll to top button based on scroll position
     function toggleScrollButton() {
       if (window.scrollY > 300) {
         scrollTopBtn.classList.add('visible');
@@ -688,12 +722,12 @@
     if (homeBtn) homeBtn.addEventListener('click', scrollToTop);
     if (scrollTopBtn) scrollTopBtn.addEventListener('click', scrollToTop);
     window.addEventListener('scroll', toggleScrollButton);
-    toggleScrollButton(); // initial check
+    toggleScrollButton();
 
     if (checkGoBtn) checkGoBtn.addEventListener('click', handleMainAction);
     if (masterCta) masterCta.addEventListener('click', handleMasterCTA);
 
-    console.log("RUBY WHISPER • Hero image removed • Card background image removed • Home button added • Fancy script font for tagline");
+    console.log("RUBY WHISPER • Cinematic red gem background added • Borderless home button (smaller) • No extra images inside card");
   })();
 </script>
 </body>
