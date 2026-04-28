@@ -6,6 +6,8 @@
   <title>Ruby Whisper | Brilliance meets Rarity</title>
   <!-- Google Fonts for elegant typography -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- More fancy script font for tagline -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -71,11 +73,11 @@
       z-index: 2;
     }
 
-    /* Simplified header - only Ruby Whisper logo, no extra meta */
+    /* Header with home button */
     .brand-header {
       display: flex;
-      justify-content: flex-start;
-      align-items: baseline;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       margin-bottom: 3rem;
       border-bottom: 1px solid rgba(200, 80, 70, 0.3);
@@ -100,8 +102,35 @@
       margin-top: 6px;
       font-weight: 300;
     }
+    /* Home Button Styles */
+    .home-button {
+      background: rgba(30, 18, 14, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(200, 85, 70, 0.5);
+      border-radius: 50px;
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: #ecc9bd;
+      font-size: 0.9rem;
+    }
+    .home-button i {
+      font-size: 1rem;
+      color: #d95a44;
+    }
+    .home-button:hover {
+      background: rgba(201, 92, 72, 0.3);
+      border-color: #d44a36;
+      transform: translateY(-2px);
+      color: #f3ede8;
+    }
 
-    /* Hero section - cleaned: only ruby image, title, and updated quote */
+    /* Hero section - cleaned: no image, only title and fancy tagline */
     .hero {
       text-align: center;
       margin: 2rem 0 4rem;
@@ -111,25 +140,6 @@
       color: #d44c38;
       filter: drop-shadow(0 0 8px rgba(210, 70, 50, 0.5));
       margin-bottom: 1rem;
-    }
-    .ruby-image-container {
-      margin: 1.5rem auto 1.8rem;
-      text-align: center;
-      position: relative;
-    }
-    .ruby-gem-img {
-      max-width: 260px;
-      width: 100%;
-      height: auto;
-      border-radius: 30px;
-      filter: drop-shadow(0 0 20px rgba(210, 70, 50, 0.6));
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: 1px solid rgba(220, 100, 80, 0.3);
-    }
-    .ruby-gem-img:hover {
-      transform: scale(1.02);
-      filter: drop-shadow(0 0 30px rgba(210, 70, 50, 0.9));
     }
     .hero h2 {
       font-family: 'Cormorant Garamond', serif;
@@ -142,13 +152,15 @@
       background-clip: text;
       color: transparent;
     }
-    .hero .whisper-sub {
-      font-size: 1.4rem;
-      font-weight: 300;
-      letter-spacing: 4px;
+    /* Fancy script font for tagline */
+    .whisper-sub {
+      font-family: 'Tangerine', cursive;
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: 2px;
       margin-top: 0.8rem;
       color: #ecc9bd;
-      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(210, 70, 50, 0.3);
     }
     .brilliance-quote {
       margin-top: 2rem;
@@ -167,7 +179,7 @@
       color: #e6836e;
     }
 
-    /* card grid: single action card with Ruby Whispers (2).png background */
+    /* card grid: single action card - clean background, no image */
     .action-cards {
       display: flex;
       flex-wrap: wrap;
@@ -177,7 +189,7 @@
     }
     .card {
       background: rgba(20, 12, 9, 0.85);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(200, 85, 70, 0.5);
       border-radius: 48px;
       padding: 2.8rem 2rem;
@@ -186,36 +198,13 @@
       transition: all 0.3s ease;
       box-shadow: 0 20px 35px -15px rgba(0,0,0,0.6);
       position: relative;
-      overflow: hidden;
-      /* Ruby Whispers (2).png as background image */
-      background-image: url('Ruby Whispers (2).png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-blend-mode: overlay;
-    }
-    /* Dark overlay to ensure text readability while image shows through */
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 7, 5, 0.65);
-      backdrop-filter: brightness(0.85);
-      z-index: 0;
-      border-radius: 48px;
-      pointer-events: none;
+      /* No background image - clean */
     }
     .card:hover {
       transform: translateY(-8px);
       border-color: #d44a36;
       box-shadow: 0 25px 40px -12px rgba(190, 60, 45, 0.4);
-    }
-    .card i, .card p, .card .btn-ruby {
-      position: relative;
-      z-index: 2;
+      background: rgba(30, 18, 14, 0.9);
     }
     .card i {
       font-size: 3rem;
@@ -446,6 +435,35 @@
       letter-spacing: 1px;
     }
 
+    /* Scroll to top button (smooth home behavior) */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #c94d38;
+      color: #0a0705;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      border: none;
+      font-size: 1.2rem;
+      z-index: 99;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .scroll-top-btn.visible {
+      opacity: 1;
+    }
+    .scroll-top-btn:hover {
+      background: #e2634b;
+      transform: translateY(-3px);
+    }
+
     /* responsive */
     @media (max-width: 760px) {
       .site-wrapper {
@@ -454,8 +472,8 @@
       .hero h2 {
         font-size: 3rem;
       }
-      .hero .whisper-sub {
-        font-size: 1rem;
+      .whisper-sub {
+        font-size: 1.6rem !important;
       }
       .lifegang-motto {
         font-size: 2rem;
@@ -474,14 +492,15 @@
         padding-bottom: 0.5rem;
         display: inline-block;
       }
-      .ruby-gem-img {
-        max-width: 180px;
-      }
       .social-icons {
         gap: 1.8rem;
       }
       .social-icon i {
         font-size: 2rem;
+      }
+      .brand-header {
+        flex-direction: row;
+        justify-content: space-between;
       }
     }
   </style>
@@ -491,29 +510,35 @@
 <div class="glow-orb-left"></div>
 <div class="site-wrapper">
   <div class="content">
-    <!-- Simplified header: ONLY Ruby Whisper logo (top left) -->
+    <!-- Header with home button -->
     <div class="brand-header">
       <div class="logo">
         <h1>RUBY WHISPER</h1>
         <p>"Where Brilliance meets Rarity"</p>
       </div>
+      <!-- Home Button -->
+      <div class="home-button" id="homeButton">
+        <i class="fas fa-home"></i>
+        <span>HOME</span>
+      </div>
     </div>
 
-    <!-- Hero area: ruby image + title + "time to shine" -->
+    <!-- Hero area: NO image above title, only title + fancy tagline -->
     <div class="hero">
-      <div class="ruby-image-container">
-        <img src="Ruby Whispers (2).png" alt="Ruby Whisper — Brilliance meets Rarity" class="ruby-gem-img" id="rubyImage">
+      <div class="ruby-icon">
+        <i class="fas fa-crown"></i> <i class="fas fa-gem"></i>
       </div>
       <h2>RUBY<br>WHISPER</h2>
+      <!-- Fancy script font for "Where Brilliance meets Rarity" -->
       <div class="whisper-sub">Where Brilliance meets Rarity</div>
       <div class="brilliance-quote">
         <span>✦</span> time to shine <span>✦</span>
       </div>
     </div>
 
-    <!-- Action Card with Ruby Whispers (2).png as background + UP arrow -->
+    <!-- Action Card: Clean (no image background) with UP arrow -->
     <div class="action-cards">
-      <div class="card" id="rubyBgCard">
+      <div class="card">
         <i class="fas fa-hand-pointer"></i>
         <p>Unlock exclusive pathways, rare editions & immersive experiences. Verify your access to the inner circle of brilliance.</p>
         <button class="btn-ruby" id="checkGoBtn">
@@ -580,11 +605,17 @@
   </div>
 </div>
 
+<!-- Scroll to top button (extra home/navigation feature) -->
+<div class="scroll-top-btn" id="scrollTopBtn">
+  <i class="fas fa-arrow-up"></i>
+</div>
+
 <script>
   (function() {
     const checkGoBtn = document.getElementById('checkGoBtn');
     const masterCta = document.getElementById('masterCtaBtn');
-    const rubyImage = document.getElementById('rubyImage');
+    const homeBtn = document.getElementById('homeButton');
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
     
     // Social links (example placeholders)
     const instagramLink = document.getElementById('instagramLink');
@@ -637,22 +668,32 @@
       }
     }
 
-    function handleRubyImageClick() {
-      alert("✦ THE RUBY WHISPERS ✦\n\n\"Where Brilliance meets Rarity\"\nThis gem is a symbol of untamed fire and rare essence. Let its light guide you.");
-      if (rubyImage) {
-        rubyImage.style.transition = "0.1s";
-        rubyImage.style.filter = "drop-shadow(0 0 35px rgba(210, 70, 50, 0.9))";
-        setTimeout(() => {
-          rubyImage.style.filter = "drop-shadow(0 0 20px rgba(210, 70, 50, 0.6))";
-        }, 200);
+    // Home button functionality: smooth scroll to top
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Show/hide scroll to top button based on scroll position
+    function toggleScrollButton() {
+      if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
       }
     }
 
+    if (homeBtn) homeBtn.addEventListener('click', scrollToTop);
+    if (scrollTopBtn) scrollTopBtn.addEventListener('click', scrollToTop);
+    window.addEventListener('scroll', toggleScrollButton);
+    toggleScrollButton(); // initial check
+
     if (checkGoBtn) checkGoBtn.addEventListener('click', handleMainAction);
     if (masterCta) masterCta.addEventListener('click', handleMasterCTA);
-    if (rubyImage) rubyImage.addEventListener('click', handleRubyImageClick);
 
-    console.log("RUBY WHISPER • Card now has 'Ruby Whispers (2).png' background + upward arrow on button • Social hub active");
+    console.log("RUBY WHISPER • Hero image removed • Card background image removed • Home button added • Fancy script font for tagline");
   })();
 </script>
 </body>
