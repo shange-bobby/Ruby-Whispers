@@ -26,25 +26,24 @@
       position: relative;
     }
 
-    /* CINEMATIC BACKGROUND IMAGE - Untitled design (2).png with dramatic cinematic styling */
-    body::before {
-      content: "";
+    /* CINEMATIC BACKGROUND IMAGE - ZOOMED OUT + PARALLAX FIXED (smooth scroll with subtle movement) */
+    .parallax-bg {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 110%;
+      height: 110%;
       background-image: url('Untitled design (2).png');
-      background-size: cover;
+      background-size: contain;     /* zoomed out - shows full image */
       background-position: center center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       opacity: 0.7;
-      z-index: -3;
+      z-index: -4;
       pointer-events: none;
-      /* Cinematic subtle zoom effect */
-      transform: scale(1.02);
-      transition: transform 0.3s ease;
+      filter: brightness(0.95) contrast(1.08) saturate(1.1);
+      transition: transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+      transform: translateY(0);
     }
     
     /* Cinematic vignette overlay - darkens edges for dramatic feel */
@@ -56,10 +55,10 @@
       width: 100%;
       height: 100%;
       background: radial-gradient(ellipse at center, 
-        rgba(0,0,0,0.2) 0%, 
-        rgba(0,0,0,0.55) 60%, 
+        rgba(0,0,0,0.1) 0%, 
+        rgba(0,0,0,0.45) 55%, 
         rgba(0,0,0,0.85) 100%);
-      z-index: -2;
+      z-index: -3;
       pointer-events: none;
     }
     
@@ -71,10 +70,10 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(125deg, 
-        rgba(30, 10, 8, 0.3) 0%, 
-        rgba(0, 0, 0, 0.4) 40%,
-        rgba(15, 5, 3, 0.6) 100%);
-      z-index: -1;
+        rgba(30, 10, 8, 0.2) 0%, 
+        rgba(0, 0, 0, 0.3) 40%,
+        rgba(15, 5, 3, 0.5) 100%);
+      z-index: -2;
       pointer-events: none;
     }
 
@@ -99,7 +98,7 @@
       z-index: 2;
     }
 
-    /* subtle ambient glow orbs for cinematic atmosphere */
+    /* subtle ambient glow orbs for atmosphere */
     .glow-orb {
       position: fixed;
       top: -20vh;
@@ -277,42 +276,86 @@
       text-shadow: 0 1px 2px rgba(0,0,0,0.4);
       font-weight: 500;
     }
+
+    /* ========== ULTRA FANCY "tap.html" BUTTON with 3D & GLOW ========== */
     .btn-ruby {
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      border: 1.5px solid #e27a64;
-      color: #fff0e6;
-      padding: 0.7rem 1.8rem;
-      border-radius: 40px;
-      font-weight: 600;
-      letter-spacing: 1px;
+      background: linear-gradient(135deg, #e06a50, #b83b2a);
+      border: none;
+      color: #fffcf5;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      letter-spacing: 2px;
       cursor: pointer;
-      transition: 0.25s;
-      font-size: 0.9rem;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      font-size: 1rem;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      gap: 14px;
+      box-shadow: 0 10px 25px rgba(180, 50, 30, 0.5), 0 2px 0 0 rgba(255, 200, 170, 0.3) inset;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      font-family: inherit;
+    }
+    /* Shine animation */
+    .btn-ruby::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,245,0.4) 0%, rgba(255,255,245,0) 80%);
+      transform: rotate(25deg);
+      transition: left 0.6s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .btn-ruby:hover::before {
+      left: 120%;
+      opacity: 0.7;
     }
     .btn-ruby:hover {
-      background: #c95c48;
-      color: #0a0705;
-      border-color: #c95c48;
-      box-shadow: 0 0 15px rgba(201, 92, 72, 0.7);
+      background: linear-gradient(135deg, #f07a60, #d44c38);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 32px rgba(200, 70, 40, 0.7), 0 0 0 2px rgba(255, 220, 190, 0.5) inset;
+      color: #ffffff;
     }
-    /* Upward arrow animation */
+    .btn-ruby:active {
+      transform: translateY(2px) scale(0.98);
+      transition: 0.05s;
+    }
+    .btn-ruby i {
+      font-size: 1.2rem;
+      transition: transform 0.2s, filter 0.2s;
+    }
+    .btn-ruby:hover i {
+      transform: translateX(5px) scale(1.05);
+      filter: drop-shadow(0 0 6px rgba(255,200,150,0.8));
+    }
+    /* Upward arrow animation - cinematic */
     .up-arrow {
       display: inline-block;
-      animation: bounceUp 1.2s infinite ease;
-      font-size: 1.1rem;
-      margin-left: 6px;
+      animation: floatGlow 1.4s infinite ease-in-out;
+      font-size: 1.2rem;
+      margin-left: 4px;
     }
-    @keyframes bounceUp {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+    @keyframes floatGlow {
+      0%, 100% { transform: translateY(0); opacity: 0.8; text-shadow: 0 0 0px #ffaa90; }
+      50% { transform: translateY(-7px); opacity: 1; text-shadow: 0 0 12px #ffaa90, 0 0 3px #ff6640; }
+    }
+    /* Gem icon pulse */
+    .btn-ruby .fa-gem {
+      filter: drop-shadow(0 0 4px rgba(255,160,120,0.7));
+      animation: gentlePulse 2s infinite;
+    }
+    @keyframes gentlePulse {
+      0%, 100% { filter: drop-shadow(0 0 2px rgba(255,160,120,0.5)); }
+      50% { filter: drop-shadow(0 0 10px rgba(255,180,130,0.9)); }
     }
 
-    /* Lifegang Section - cinematic blur */
+    /* Lifegang Section */
     .lifegang-section {
       background: linear-gradient(115deg, #0f0b09cc 0%, #1c120ecc 100%);
       backdrop-filter: blur(8px);
@@ -558,11 +601,16 @@
         flex-direction: row;
         justify-content: space-between;
       }
+      .btn-ruby {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Cinematic overlay for extra mood -->
+  <!-- Parallax background element that moves subtly on scroll -->
+  <div class="parallax-bg" id="parallaxBg"></div>
   <div class="cinematic-overlay"></div>
   <div class="glow-orb"></div>
   <div class="glow-orb-left"></div>
@@ -593,15 +641,15 @@
         </div>
       </div>
 
-      <!-- Action Card -->
+      <!-- Action Card with MEGA FANCY BUTTON linking to tap.html -->
       <div class="action-cards">
         <div class="card">
           <i class="fas fa-hand-pointer"></i>
           <p>Unlock exclusive pathways, rare editions & immersive experiences. Verify your access to the inner circle of brilliance.</p>
-          <button class="btn-ruby" id="checkGoBtn">
-            Tap this! 
+          <a href="tap.html" class="btn-ruby" id="checkGoBtn">
+            <i class="fas fa-gem"></i> Tap this! 
             <span class="up-arrow"><i class="fas fa-arrow-up"></i></span>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -668,12 +716,13 @@
 
   <script>
     (function() {
-      const checkGoBtn = document.getElementById('checkGoBtn');
+      // Background parallax effect - moves subtly as user scrolls (cinematic feel)
+      const parallaxBg = document.getElementById('parallaxBg');
       const masterCta = document.getElementById('masterCtaBtn');
       const homeBtn = document.getElementById('homeButton');
       const scrollTopBtn = document.getElementById('scrollTopBtn');
       
-      // Social links
+      // Social links handling (still same interactive but friendly)
       const instagramLink = document.getElementById('instagramLink');
       const facebookLink = document.getElementById('facebookLink');
       const tiktokLink = document.getElementById('tiktokLink');
@@ -697,18 +746,26 @@
         });
       }
 
-      function handleMainAction() {
-        const userConfirmed = confirm("⚡ RUBY WHISPER // ACTIVATE THE WHISPER\n\nAre you ready to step into the realm where brilliance meets rarity? Unlock exclusive access and go beyond the ordinary.");
-        if (userConfirmed) {
-          alert("✨ ACCESS GRANTED ✨\nYou have activated the Ruby current. Prepare to Go More Than Lifegang.\n\n\"Rarity is your compass.\"");
-          console.log("Ruby Whisper: Activated");
-          if (checkGoBtn) {
-            checkGoBtn.style.transform = "scale(0.98)";
-            setTimeout(() => { if(checkGoBtn) checkGoBtn.style.transform = ""; }, 150);
-          }
-        } else {
-          alert("The whisper lingers… whenever you're ready, brilliance awaits.");
-        }
+      // Smooth parallax scroll effect: background moves ~30% of scroll speed
+      if (parallaxBg) {
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          const moveY = scrollY * 0.2; // subtle movement when scrolling (image also moves)
+          parallaxBg.style.transform = `translateY(${moveY}px)`;
+        });
+      }
+
+      // Optional: console notification for tap.html redirection
+      const fancyButton = document.getElementById('checkGoBtn');
+      if (fancyButton) {
+        fancyButton.addEventListener('click', (e) => {
+          // Just letting the link navigate to tap.html naturally, but we add a little spark for fun
+          console.log("✨ Redirecting to tap.html — Ruby Whisper activation portal ✨");
+          // optional quick flash effect on body
+          document.body.style.transition = "background 0.15s";
+          document.body.style.backgroundColor = "#1f0e0a";
+          setTimeout(() => { document.body.style.backgroundColor = ""; }, 150);
+        });
       }
 
       function handleMasterCTA() {
@@ -737,13 +794,12 @@
 
       if (homeBtn) homeBtn.addEventListener('click', scrollToTop);
       if (scrollTopBtn) scrollTopBtn.addEventListener('click', scrollToTop);
+      if (masterCta) masterCta.addEventListener('click', handleMasterCTA);
+      
       window.addEventListener('scroll', toggleScrollButton);
       toggleScrollButton();
 
-      if (checkGoBtn) checkGoBtn.addEventListener('click', handleMainAction);
-      if (masterCta) masterCta.addEventListener('click', handleMasterCTA);
-
-      console.log("RUBY WHISPER • Cinematic background with Untitled design (2).png • Borderless home button • cinematic overlays active");
+      console.log("✨ RUBY WHISPER FINALE • Zoomed-out cinematic background • Parallax movement on scroll • 'Tap this!' links to tap.html with ultra-fancy button");
     })();
   </script>
 </body>
