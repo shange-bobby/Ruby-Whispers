@@ -1,1 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Ruby Gems Collection | Ruby Whisper</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      background-color: #0a0705;
+      font-family: 'Inter', sans-serif;
+      color: #f3ede8;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    /* Cinematic ruby background */
+    .cinematic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('Untitled design (2).png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      opacity: 0.6;
+      z-index: -4;
+      pointer-events: none;
+      transform: translateY(0);
+      transition: transform 0.08s linear;
+    }
+    .vignette-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.88) 100%);
+      z-index: -3;
+      pointer-events: none;
+    }
+    .cinematic-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(125deg, rgba(40,15,10,0.2) 0%, rgba(0,0,0,0.3) 40%, rgba(10,5,3,0.55) 100%);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1e1712; }
+    ::-webkit-scrollbar-thumb { background: #b83b2e; border-radius: 8px; }
+
+    .site-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Header with back button */
+    .brand-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(200, 80, 70, 0.3);
+      padding-bottom: 1rem;
+    }
+    .logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #f0cfc0, #e09e8e, #c24734);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo p {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: #cf9f8f;
+    }
+    .back-button {
+      background: rgba(20, 12, 9, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(200, 85, 70, 0.4);
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: #ecc9bd;
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+    .back-button i { color: #d95a44; font-size: 0.9rem; }
+    .back-button:hover {
+      background: rgba(201, 92, 72, 0.3);
+      border-color: #d44a36;
+      transform: translateX(-3px);
+      color: #fff;
+    }
+
+    /* Hero collection title */
+    .collection-hero {
+      text-align: center;
+      margin: 1rem 0 3rem;
+    }
+    .collection-hero h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #fff0e6, #f5bcab, #e26a54);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .collection-hero .tagline {
+      font-family: 'Tangerine', cursive;
+      font-size: 1.8rem;
+      color: #ecc9bd;
+      margin-top: 0.5rem;
+    }
+
+    /* Jewelry grid - fancy card layout */
+    .jewelry-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 3rem 0;
+    }
+    .gem-card {
+      background: rgba(15, 10, 8, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(200, 85, 70, 0.4);
+      border-radius: 48px;
+      width: 320px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      cursor: pointer;
+      position: relative;
+    }
+    .gem-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: #e06a50;
+      box-shadow: 0 25px 40px -12px rgba(200, 70, 40, 0.5);
+      background: rgba(30, 18, 14, 0.85);
+    }
+    .card-inner {
+      padding: 2rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .gem-icon {
+      font-size: 3.8rem;
+      color: #e06a50;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 8px rgba(210, 70, 50, 0.6));
+      transition: 0.3s;
+    }
+    .gem-card:hover .gem-icon {
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 15px rgba(210, 70, 50, 0.9));
+    }
+    .gem-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #f3e6e0;
+    }
+    .gem-price {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #e6836e;
+      margin: 0.5rem 0;
+      letter-spacing: 1px;
+    }
+    .gem-desc {
+      font-size: 0.85rem;
+      color: #cfbcb3;
+      margin: 1rem 0;
+      line-height: 1.4;
+    }
+    .gem-rarity {
+      display: inline-block;
+      background: rgba(210, 70, 50, 0.2);
+      border-radius: 50px;
+      padding: 0.3rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #e6836e;
+      border: 0.5px solid rgba(210, 90, 70, 0.5);
+      margin-top: 0.5rem;
+    }
+    .btn-detail {
+      background: transparent;
+      border: 1.5px solid #e06a50;
+      color: #f3ded6;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 500;
+      margin-top: 1.2rem;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-detail:hover {
+      background: #e06a50;
+      color: #0a0705;
+      box-shadow: 0 0 10px rgba(224, 106, 80, 0.5);
+    }
+
+    /* Special featured section */
+    .featured-section {
+      margin: 4rem 0;
+      text-align: center;
+      background: linear-gradient(115deg, #0f0b09aa 0%, #1c120eaa 100%);
+      backdrop-filter: blur(10px);
+      border-radius: 70px;
+      padding: 2.5rem;
+      border: 1px solid rgba(200, 80, 60, 0.5);
+    }
+    .featured-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .featured-gems {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .featured-item {
+      background: rgba(0,0,0,0.4);
+      border-radius: 40px;
+      padding: 1rem 1.8rem;
+      width: 200px;
+      transition: 0.2s;
+    }
+    .featured-item i { font-size: 2.5rem; color: #e6836e; margin-bottom: 0.5rem; display: block; }
+    .featured-item span { font-size: 0.9rem; font-weight: 500; }
+
+    /* Ruby lore section */
+    .lore-section {
+      margin: 4rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+      border-radius: 50px;
+      padding: 2rem;
+      align-items: center;
+    }
+    .lore-text {
+      flex: 2;
+    }
+    .lore-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      border-left: 4px solid #d65842;
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .lore-text p {
+      color: #cfbcb3;
+      line-height: 1.5;
+    }
+    .lore-icon {
+      flex: 1;
+      text-align: center;
+      font-size: 4rem;
+      color: #c94d38;
+    }
+
+    /* Footer */
+    .footer-note {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(200, 85, 70, 0.3);
+      font-size: 0.75rem;
+      color: #a07a6e;
+    }
+
+    /* Responsive */
+    @media (max-width: 760px) {
+      .site-wrapper { padding: 1rem 1rem 3rem; }
+      .collection-hero h2 { font-size: 2.5rem; }
+      .gem-card { width: 280px; }
+      .featured-item { width: 150px; }
+      .lore-section { flex-direction: column; text-align: center; }
+      .lore-text h3 { border-left: none; border-bottom: 2px solid #d65842; display: inline-block; padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cinematic-bg" id="cinematicBg"></div>
+  <div class="vignette-overlay"></div>
+  <div class="cinematic-overlay"></div>
+
+  <div class="site-wrapper">
+    <div class="brand-header">
+      <div class="logo">
+        <h1>RUBY WHISPER</h1>
+        <p>rare gemistry</p>
+      </div>
+      <a href="index.html" class="back-button" id="backBtn">
+        <i class="fas fa-arrow-left"></i> BACK TO HOME
+      </a>
+    </div>
+
+    <div class="collection-hero">
+      <h2>✦ THE RUBY ATELIER ✦</h2>
+      <div class="tagline">where fire meets craftsmanship</div>
+    </div>
+
+    <!-- Jewelry Collection Grid -->
+    <div class="jewelry-grid">
+      <!-- Ring 1 -->
+      <div class="gem-card" data-name="Ember's Kiss Ring">
+        <div class="card-inner">
+          <i class="fas fa-gem gem-icon"></i>
+          <h3>Ember's Kiss</h3>
+          <div class="gem-price">$4,800</div>
+          <div class="gem-desc">Burmese ruby set in 18k rose gold with diamond halo. Vivid red with rich fluorescence.</div>
+          <span class="gem-rarity"><i class="fas fa-star"></i> RARITY: EXCEPTIONAL</span>
+          <div class="btn-detail">INQUIRE <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <!-- Necklace -->
+      <div class="gem-card" data-name="Scarlet Oath Pendant">
+        <div class="card-inner">
+          <i class="fas fa-crown gem-icon"></i>
+          <h3>Scarlet Oath</h3>
+          <div class="gem-price">$12,500</div>
+          <div class="gem-desc">Majestic cushion-cut ruby, 2.4 carats, suspended on platinum chain. Untreated gemstone.</div>
+          <span class="gem-rarity"><i class="fas fa-infinity"></i> MASTERPIECE</span>
+          <div class="btn-detail">INQUIRE <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <!-- Earrings -->
+      <div class="gem-card" data-name="Crimson Echo Drops">
+        <div class="card-inner">
+          <i class="fas fa-fire gem-icon"></i>
+          <h3>Crimson Echo</h3>
+          <div class="gem-price">$7,200</div>
+          <div class="gem-desc">Pair of pear-shaped rubies, total 1.8ct, surrounded by micro-pavé diamonds. Hypnotic brilliance.</div>
+          <span class="gem-rarity"><i class="fas fa-gem"></i> LIMITED EDITION</span>
+          <div class="btn-detail">INQUIRE <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+      <!-- Bracelet -->
+      <div class="gem-card" data-name="Ruby Veil Bangle">
+        <div class="card-inner">
+          <i class="fas fa-hand-peace gem-icon"></i>
+          <h3>Ruby Veil</h3>
+          <div class="gem-price">$9,300</div>
+          <div class="gem-desc">Flexible bangle set with 15 round rubies (2.2ct total). Modern elegance meets ancient passion.</div>
+          <span class="gem-rarity"><i class="fas fa-chart-line"></i> SOUGHT AFTER</span>
+          <div class="btn-detail">INQUIRE <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Rarity Section -->
+    <div class="featured-section">
+      <h3>✦ THE LEGACY COLLECTION ✦</h3>
+      <p>Each gem is accompanied by a certificate of authenticity and a lifetime warranty.</p>
+      <div class="featured-gems">
+        <div class="featured-item"><i class="fas fa-diamond"></i><span>Untreated Burmese</span></div>
+        <div class="featured-item"><i class="fas fa-certificate"></i><span>IGI Certified</span></div>
+        <div class="featured-item"><i class="fas fa-hand-sparkles"></i><span>Handcrafted</span></div>
+        <div class="featured-item"><i class="fas fa-chart-simple"></i><span>Investment Grade</span></div>
+      </div>
+    </div>
+
+    <!-- Ruby Lore & Brilliance -->
+    <div class="lore-section">
+      <div class="lore-text">
+        <h3>The Soul of Ruby</h3>
+        <p>For centuries, rubies have been known as the "King of Gemstones" — symbols of passion, protection, and prosperity. Each ruby in our atelier is ethically sourced from Mozambique and Burma, selected for its pure red hue and mesmerizing inner fire. <strong>Where brilliance meets rarity</strong>, we transform raw gems into heirlooms that echo through time. Our master jewelers sculpt each piece with precision, ensuring that every Whisper carries the legacy of uncompromised beauty.</p>
+      </div>
+      <div class="lore-icon">
+        <i class="fas fa-eye"></i>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">"fire within"</p>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <i class="far fa-copyright"></i> RUBY WHISPER ATELIER — each piece tells a story. <br> Exclusive previews for private clients.
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Parallax background effect
+      const bg = document.getElementById('cinematicBg');
+      if (bg) {
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          bg.style.transform = `translateY(${scrollY * 0.12}px)`;
+        });
+      }
+
+      // Handle "INQUIRE" clicks on jewelry cards (fancy alert)
+      const detailBtns = document.querySelectorAll('.btn-detail');
+      detailBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.gem-card');
+          const itemName = card ? card.getAttribute('data-name') || 'this masterpiece' : 'this exceptional ruby';
+          alert(`✨ RUBY WHISPER ATELIER ✨\n\nThank you for your interest in "${itemName}".\nOur rare gem specialist will reach out within 24 hours.\n\n“Where Brilliance meets Rarity.”`);
+        });
+      });
+
+      // Card hover additional effect: subtle pulse on icon
+      const cards = document.querySelectorAll('.gem-card');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          const icon = card.querySelector('.gem-icon');
+          if (icon) icon.style.transition = 'all 0.2s';
+        });
+      });
+
+      // Back button works natively, but ensure no extra behavior
+      const backBtn = document.getElementById('backBtn');
+      if (backBtn) {
+        backBtn.addEventListener('click', (e) => {
+          // just allow navigation to index.html
+          console.log('Returning to Ruby Whisper home');
+        });
+      }
+
+      console.log('✨ Ruby Whisper Atelier — Jewelry collection loaded with ruby gemstones ✨');
+    })();
+  </script>
+</body>
+</html>
