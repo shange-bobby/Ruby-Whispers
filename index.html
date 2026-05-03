@@ -26,15 +26,15 @@
       position: relative;
     }
 
-    /* PERFECT CINEMATIC BACKGROUND - Fullscreen, balanced zoom (not too zoomed out, not too zoomed in) */
+    /* PERFECT CINEMATIC BACKGROUND - using red gem.jpg */
     .cinematic-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('Untitled design (2).png');
-      background-size: cover;           /* covers entire screen - fullscreen */
+      background-image: url('red gem.jpg');
+      background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -608,7 +608,7 @@
   </style>
 </head>
 <body>
-  <!-- Perfect cinematic background - fullscreen, balanced zoom (cover with subtle shift on scroll) -->
+  <!-- Perfect cinematic background - using red gem.jpg -->
   <div class="cinematic-bg" id="cinematicBg"></div>
   <div class="vignette-overlay"></div>
   <div class="cinematic-overlay"></div>
@@ -716,7 +716,7 @@
 
   <script>
     (function() {
-      // Parallax effect for background - subtle movement when scrolling (image moves with scroll)
+      // Parallax effect for background - subtle movement when scrolling
       const cinematicBg = document.getElementById('cinematicBg');
       const masterCta = document.getElementById('masterCtaBtn');
       const homeBtn = document.getElementById('homeButton');
@@ -746,21 +746,19 @@
         });
       }
 
-      // Smooth parallax scroll effect: background moves slightly (cinematic feel while preserving fullscreen)
+      // Smooth parallax scroll effect
       if (cinematicBg) {
         window.addEventListener('scroll', () => {
           const scrollY = window.scrollY;
-          const moveY = scrollY * 0.15; // subtle movement, not too much
+          const moveY = scrollY * 0.15;
           cinematicBg.style.transform = `translateY(${moveY}px)`;
         });
       }
 
-      // Fancy button click effect + navigation to tap.html (already handled by href, but add a little spark)
       const fancyButton = document.getElementById('checkGoBtn');
       if (fancyButton) {
         fancyButton.addEventListener('click', (e) => {
-          console.log("✨ Ruby Whisper: Navigating to tap.html — exclusive portal ✨");
-          // Quick visual flash before redirect (optional, doesn't block navigation)
+          console.log("✨ Ruby Whisper: Navigating to tap.html — exclusive jewelry collection ✨");
           document.body.style.transition = "background 0.1s";
           document.body.style.backgroundColor = "#2a120e";
           setTimeout(() => { document.body.style.backgroundColor = ""; }, 120);
@@ -798,7 +796,7 @@
       window.addEventListener('scroll', toggleScrollButton);
       toggleScrollButton();
 
-      console.log("✨ RUBY WHISPER • Perfect fullscreen background • Balanced zoom (cover) • Subtle parallax movement • Fancy button links to tap.html");
+      console.log("✨ RUBY WHISPER • Background: red gem.jpg • Parallax effect active • Fancy button links to tap.html");
     })();
   </script>
 </body>
