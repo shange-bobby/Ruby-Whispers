@@ -1,1 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Explore | Lazange Gems - Jewelry Collection</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      background-color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      color: #e8e0d8;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    /* Background with cogem.jpg */
+    .cinematic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('cogem.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      opacity: 0.3;
+      z-index: -5;
+      pointer-events: none;
+      filter: brightness(0.7) contrast(1.1);
+    }
+    
+    .dark-base {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1a1a1a;
+      z-index: -4;
+      pointer-events: none;
+    }
+
+    .side-glow-left {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 20%;
+      height: 100%;
+      background: radial-gradient(ellipse at left, rgba(210, 100, 80, 0.1) 0%, rgba(30, 30, 35, 0) 80%);
+      z-index: -3;
+      pointer-events: none;
+    }
+    .side-glow-right {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 20%;
+      height: 100%;
+      background: radial-gradient(ellipse at right, rgba(210, 100, 80, 0.1) 0%, rgba(30, 30, 35, 0) 80%);
+      z-index: -3;
+      pointer-events: none;
+    }
+    
+    .vignette-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.8) 100%);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #2a2a2a; }
+    ::-webkit-scrollbar-thumb { background: #b85a40; border-radius: 8px; }
+
+    .site-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Header */
+    .brand-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(180, 100, 80, 0.3);
+      padding-bottom: 1rem;
+    }
+    .logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #e8ddd4, #d4aa9a, #c97a62);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo p { font-size: 0.7rem; letter-spacing: 3px; color: #b8a69c; }
+    .back-button {
+      background: rgba(30, 30, 35, 0.6);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(180, 100, 80, 0.3);
+      padding: 0.4rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.25s;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: #d4c4bc;
+      font-size: 0.8rem;
+      border-radius: 40px;
+      text-decoration: none;
+    }
+    .back-button i { color: #c97a62; }
+    .back-button:hover { background: rgba(180, 100, 80, 0.25); color: #f0e6e0; }
+
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      margin: 1rem 0 3rem;
+    }
+    .page-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #f0e6e0, #d4aa9a, #c97a62);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .page-title p {
+      font-family: 'Tangerine', cursive;
+      font-size: 1.5rem;
+      color: #d4c4bc;
+      margin-top: 0.3rem;
+    }
+
+    /* Jewelry Sections */
+    .jewelry-section {
+      margin: 4rem 0;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid #c97a62;
+      padding-left: 1.5rem;
+    }
+    .section-header i {
+      font-size: 2rem;
+      color: #c97a62;
+    }
+    .section-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      color: #e0d4cc;
+    }
+    .section-header .sub {
+      font-size: 0.8rem;
+      color: #b8a69c;
+      margin-left: auto;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .product-card {
+      background: rgba(25, 25, 30, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(180, 100, 80, 0.3);
+      border-radius: 32px;
+      width: 280px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: #c97a62;
+      background: rgba(40, 40, 45, 0.9);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+    }
+    .product-icon {
+      font-size: 2.8rem;
+      color: #c97a62;
+      margin-bottom: 1rem;
+    }
+    .product-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .product-price {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #d48a6e;
+      margin: 0.5rem 0;
+    }
+    .product-desc {
+      font-size: 0.8rem;
+      color: #b8a69c;
+      margin: 0.5rem 0;
+      line-height: 1.4;
+    }
+    .gem-stone {
+      display: inline-block;
+      background: rgba(200, 120, 90, 0.15);
+      border-radius: 20px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.7rem;
+      color: #d48a6e;
+      margin-top: 0.5rem;
+    }
+    .btn-inquire {
+      background: transparent;
+      border: 1px solid #c97a62;
+      color: #d4c4bc;
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-inquire:hover {
+      background: #c97a62;
+      color: #1a1a1a;
+    }
+
+    /* Featured Banner */
+    .featured-banner {
+      background: linear-gradient(135deg, rgba(30, 30, 35, 0.8), rgba(20, 20, 25, 0.9));
+      backdrop-filter: blur(8px);
+      border-radius: 50px;
+      padding: 2.5rem;
+      text-align: center;
+      margin: 4rem 0;
+      border: 1px solid rgba(200, 120, 90, 0.3);
+    }
+    .featured-banner h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .featured-banner p { color: #b8a69c; margin-bottom: 1.5rem; }
+    .featured-banner .btn-gem {
+      background: linear-gradient(135deg, #b86a50, #9a4a38);
+      display: inline-flex;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #f0e6e0;
+      font-weight: 600;
+      gap: 10px;
+    }
+    .featured-banner .btn-gem:hover { background: linear-gradient(135deg, #c97a62, #b85a40); transform: scale(1.02); }
+
+    /* Footer */
+    .footer-note {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(180, 100, 80, 0.25);
+      font-size: 0.75rem;
+      color: #8a7a72;
+    }
+
+    @media (max-width: 760px) {
+      .site-wrapper { padding: 1rem 1rem 3rem; }
+      .page-title h2 { font-size: 2rem; }
+      .section-header h3 { font-size: 1.5rem; }
+      .product-card { width: 260px; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dark-base"></div>
+  <div class="cinematic-bg"></div>
+  <div class="side-glow-left"></div>
+  <div class="side-glow-right"></div>
+  <div class="vignette-overlay"></div>
+
+  <div class="site-wrapper">
+    <div class="brand-header">
+      <div class="logo">
+        <h1>LAZANGE GEMS</h1>
+        <p>"Where Brilliance meets Rarity"</p>
+      </div>
+      <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> BACK TO HOME</a>
+    </div>
+
+    <div class="page-title">
+      <h2>✦ THE COLLECTION ✦</h2>
+      <p>where every gem tells a story</p>
+    </div>
+
+    <!-- RINGS SECTION -->
+    <div class="jewelry-section">
+      <div class="section-header">
+        <i class="fas fa-gem"></i>
+        <h3>RINGS</h3>
+        <span class="sub">eternal elegance</span>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" data-name="Ember's Kiss Ring" data-price="$4,800">
+          <div class="product-icon"><i class="fas fa-ring"></i></div>
+          <h4>Ember's Kiss</h4>
+          <div class="product-price">$4,800</div>
+          <div class="product-desc">Burmese ruby set in 18k rose gold with diamond halo. Vivid red fluorescence.</div>
+          <span class="gem-stone">Ruby | 1.2ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Sapphire Night Ring" data-price="$5,200">
+          <div class="product-icon"><i class="fas fa-gem"></i></div>
+          <h4>Sapphire Night</h4>
+          <div class="product-price">$5,200</div>
+          <div class="product-desc">Deep blue Ceylon sapphire, cushion cut, surrounded by pavé diamonds.</div>
+          <span class="gem-stone">Sapphire | 1.5ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Emerald Crown Ring" data-price="$6,800">
+          <div class="product-icon"><i class="fas fa-crown"></i></div>
+          <h4>Emerald Crown</h4>
+          <div class="product-price">$6,800</div>
+          <div class="product-desc">Zambian emerald with tapered baguette diamonds. Regal and timeless.</div>
+          <span class="gem-stone">Emerald | 1.8ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NECKLACES SECTION -->
+    <div class="jewelry-section">
+      <div class="section-header">
+        <i class="fas fa-crown"></i>
+        <h3>NECKLACES</h3>
+        <span class="sub">grace that captivates</span>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" data-name="Scarlet Oath Pendant" data-price="$12,500">
+          <div class="product-icon"><i class="fas fa-crown"></i></div>
+          <h4>Scarlet Oath</h4>
+          <div class="product-price">$12,500</div>
+          <div class="product-desc">Majestic cushion-cut ruby, 2.4 carats, suspended on platinum chain.</div>
+          <span class="gem-stone">Ruby | 2.4ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Midnight Sapphire Choker" data-price="$9,800">
+          <div class="product-icon"><i class="fas fa-gem"></i></div>
+          <h4>Midnight Sapphire</h4>
+          <div class="product-price">$9,800</div>
+          <div class="product-desc">Velvet blue sapphire choker with diamond accents. Modern royalty.</div>
+          <span class="gem-stone">Sapphire | 3.1ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Forest Whisper" data-price="$7,900">
+          <div class="product-icon"><i class="fas fa-feather-alt"></i></div>
+          <h4>Forest Whisper</h4>
+          <div class="product-price">$7,900</div>
+          <div class="product-desc">Emerald teardrop necklace, ethically sourced, delicate gold chain.</div>
+          <span class="gem-stone">Emerald | 2.2ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EARRINGS SECTION -->
+    <div class="jewelry-section">
+      <div class="section-header">
+        <i class="fas fa-star-of-life"></i>
+        <h3>EARRINGS</h3>
+        <span class="sub">whispers of light</span>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" data-name="Crimson Echo Drops" data-price="$7,200">
+          <div class="product-icon"><i class="fas fa-fire"></i></div>
+          <h4>Crimson Echo</h4>
+          <div class="product-price">$7,200</div>
+          <div class="product-desc">Pair of pear-shaped rubies, total 1.8ct, surrounded by micro-pavé diamonds.</div>
+          <span class="gem-stone">Ruby Pair | 1.8ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Sapphire Dewdrops" data-price="$6,500">
+          <div class="product-icon"><i class="fas fa-water"></i></div>
+          <h4>Sapphire Dewdrops</h4>
+          <div class="product-price">$6,500</div>
+          <div class="product-desc">Teardrop blue sapphires with diamond halo. Celestial elegance.</div>
+          <span class="gem-stone">Sapphire | 2.0ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Emerald Leaves" data-price="$5,900">
+          <div class="product-icon"><i class="fas fa-leaf"></i></div>
+          <h4>Emerald Leaves</h4>
+          <div class="product-price">$5,900</div>
+          <div class="product-desc">Nature-inspired emerald drop earrings, 18k gold, vibrant green.</div>
+          <span class="gem-stone">Emerald | 1.5ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRACELETS SECTION -->
+    <div class="jewelry-section">
+      <div class="section-header">
+        <i class="fas fa-hand-peace"></i>
+        <h3>BRACELETS</h3>
+        <span class="sub">wrist of wonder</span>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" data-name="Ruby Veil Bangle" data-price="$9,300">
+          <div class="product-icon"><i class="fas fa-hand-peace"></i></div>
+          <h4>Ruby Veil</h4>
+          <div class="product-price">$9,300</div>
+          <div class="product-desc">Flexible bangle with 15 round rubies, total 2.2ct. Modern elegance.</div>
+          <span class="gem-stone">Ruby | 2.2ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Sapphire Serpent" data-price="$8,100">
+          <div class="product-icon"><i class="fas fa-dragon"></i></div>
+          <h4>Sapphire Serpent</h4>
+          <div class="product-price">$8,100</div>
+          <div class="product-desc">Twisted serpent bangle with blue sapphire eyes and diamond scales.</div>
+          <span class="gem-stone">Sapphire | 1.9ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Emerald Chain" data-price="$6,700">
+          <div class="product-icon"><i class="fas fa-link"></i></div>
+          <h4>Emerald Chain</h4>
+          <div class="product-price">$6,700</div>
+          <div class="product-desc">Luxury tennis bracelet with oval emeralds, 14k white gold.</div>
+          <span class="gem-stone">Emerald | 2.5ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CROWNS / TIARAS SECTION -->
+    <div class="jewelry-section">
+      <div class="section-header">
+        <i class="fas fa-crown"></i>
+        <h3>CROWNS & TIARAS</h3>
+        <span class="sub">for the divine</span>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" data-name="Imperial Ruby Crown" data-price="$28,000">
+          <div class="product-icon"><i class="fas fa-crown"></i></div>
+          <h4>Imperial Ruby</h4>
+          <div class="product-price">$28,000</div>
+          <div class="product-desc">Magnificent crown featuring 15 carats of Burmese rubies. For collectors.</div>
+          <span class="gem-stone">Ruby | 15ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+        <div class="product-card" data-name="Sapphire Halo Tiara" data-price="$22,500">
+          <div class="product-icon"><i class="fas fa-crown"></i></div>
+          <h4>Sapphire Halo</h4>
+          <div class="product-price">$22,500</div>
+          <div class="product-desc">Ethereal tiara with Ceylon sapphires and brilliant diamonds.</div>
+          <span class="gem-stone">Sapphire | 8.5ct</span>
+          <div class="btn-inquire">INQUIRE</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIMITED EDITION / SPECIAL COLLECTION -->
+    <div class="featured-banner">
+      <h3>✦ THE VAULT COLLECTION ✦</h3>
+      <p>Ultra-rare gemstones, museum-quality pieces available by private appointment.</p>
+      <a href="#" class="btn-gem" id="vaultBtn">REQUEST ACCESS <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="footer-note">
+      <i class="far fa-copyright"></i> LAZANGE GEMS — All pieces are certified and ethically sourced. <br> Contact our gem specialists for private viewings.
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Handle all "INQUIRE" buttons
+      const inquireBtns = document.querySelectorAll('.btn-inquire');
+      inquireBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.product-card');
+          const name = card ? card.getAttribute('data-name') || 'this piece' : 'this exquisite piece';
+          const price = card ? card.getAttribute('data-price') : '';
+          alert(`✨ LAZANGE GEMS ATELIER ✨\n\nThank you for your interest in "${name}".\n${price ? `Estimated price: ${price}\n` : ''}Our rare gem specialist will contact you within 24 hours.\n\n“Where Brilliance meets Rarity.”`);
+        });
+      });
+
+      // Vault button
+      const vaultBtn = document.getElementById('vaultBtn');
+      if (vaultBtn) {
+        vaultBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert("✨ THE VAULT COLLECTION ✨\n\nPlease request access via email: concierge@lazangegems.com\nA private curator will respond within 48 hours.");
+        });
+      }
+
+      // Add hover effect and console log
+      console.log("✨ Lazange Gems — Explore page loaded with Rings, Necklaces, Earrings, Bracelets, Crowns & Limited Editions ✨");
+    })();
+  </script>
+</body>
+</html>
