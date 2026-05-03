@@ -16,7 +16,7 @@
     }
 
     body {
-      background-color: #1a1a1a; /* dark grey base */
+      background-color: #1a1a1a;
       font-family: 'Inter', sans-serif;
       color: #e8e0d8;
       line-height: 1.4;
@@ -24,7 +24,7 @@
       position: relative;
     }
 
-    /* Background image - cogem.jpg with dark overlay */
+    /* Background image - cogem.jpg */
     .cinematic-bg {
       position: fixed;
       top: 0;
@@ -42,7 +42,6 @@
       filter: brightness(0.7) contrast(1.1) saturate(0.9);
     }
     
-    /* Dark grey base overlay */
     .dark-base {
       position: fixed;
       top: 0;
@@ -54,7 +53,6 @@
       pointer-events: none;
     }
 
-    /* Subtle light gradients on the sides - left and right radiant glow */
     .side-glow-left {
       position: fixed;
       top: 0;
@@ -76,7 +74,6 @@
       pointer-events: none;
     }
     
-    /* Subtle vignette overlay for depth */
     .vignette-overlay {
       position: fixed;
       top: 0;
@@ -88,7 +85,6 @@
       pointer-events: none;
     }
 
-    /* custom scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #2a2a2a; }
     ::-webkit-scrollbar-thumb { background: #b83b2e; border-radius: 8px; }
@@ -101,7 +97,6 @@
       z-index: 2;
     }
 
-    /* subtle ambient glow orbs */
     .glow-orb {
       position: fixed;
       top: -20vh;
@@ -124,12 +119,8 @@
       z-index: -1;
     }
 
-    .content {
-      position: relative;
-      z-index: 3;
-    }
+    .content { position: relative; z-index: 3; }
 
-    /* Header */
     .brand-header {
       display: flex;
       justify-content: space-between;
@@ -148,7 +139,6 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .logo p {
       font-size: 0.75rem;
@@ -156,7 +146,6 @@
       text-transform: uppercase;
       color: #b8a69c;
       margin-top: 6px;
-      font-weight: 300;
     }
     .home-button {
       background: rgba(30, 30, 35, 0.6);
@@ -172,28 +161,17 @@
       font-weight: 400;
       color: #d4c4bc;
       font-size: 0.8rem;
-      letter-spacing: 1px;
       border-radius: 40px;
     }
     .home-button i { font-size: 0.85rem; color: #c97a62; }
-    .home-button:hover { background: rgba(180, 100, 80, 0.25); color: #f0e6e0; border-color: #c97a62; }
+    .home-button:hover { background: rgba(180, 100, 80, 0.25); color: #f0e6e0; }
 
-    /* Hero section */
-    .hero {
-      text-align: center;
-      margin: 2rem 0 4rem;
-    }
-    .gem-icon {
-      font-size: 3.2rem;
-      color: #c97a62;
-      filter: drop-shadow(0 0 12px rgba(200, 120, 90, 0.4));
-      margin-bottom: 1rem;
-    }
+    .hero { text-align: center; margin: 2rem 0 4rem; }
+    .gem-icon { font-size: 3.2rem; color: #c97a62; filter: drop-shadow(0 0 12px rgba(200,120,90,0.4)); margin-bottom: 1rem; }
     .hero h2 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 5rem;
       font-weight: 500;
-      line-height: 1.1;
       background: linear-gradient(135deg, #f0e6e0, #d4aa9a, #c97a62);
       -webkit-background-clip: text;
       background-clip: text;
@@ -203,55 +181,38 @@
       font-family: 'Tangerine', cursive;
       font-size: 2.2rem;
       font-weight: 400;
-      letter-spacing: 2px;
       margin-top: 0.8rem;
       color: #d4c4bc;
-      text-shadow: 0 0 10px rgba(200, 120, 90, 0.3);
     }
     .brilliance-quote {
       margin-top: 2rem;
       font-size: 1.3rem;
       font-style: italic;
-      font-weight: 300;
-      border-top: 1px solid rgba(180, 100, 80, 0.4);
-      border-bottom: 1px solid rgba(180, 100, 80, 0.4);
+      border-top: 1px solid rgba(180,100,80,0.4);
+      border-bottom: 1px solid rgba(180,100,80,0.4);
       display: inline-block;
       padding: 0.8rem 2rem;
       backdrop-filter: blur(4px);
       font-family: 'Cormorant Garamond', serif;
-      background: rgba(20, 20, 25, 0.5);
+      background: rgba(20,20,25,0.5);
     }
     .brilliance-quote span { font-weight: 600; color: #d48a6e; }
 
-    /* Action card */
-    .action-cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      justify-content: center;
-      margin: 4rem 0 5rem;
-    }
+    .action-cards { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center; margin: 4rem 0 5rem; }
     .card {
       background: rgba(25, 25, 30, 0.8);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(180, 100, 80, 0.35);
+      border: 1px solid rgba(180,100,80,0.35);
       border-radius: 48px;
       padding: 2.8rem 2rem;
       width: 360px;
       text-align: center;
       transition: all 0.3s ease;
-      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5);
     }
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: #c97a62;
-      background: rgba(35, 35, 40, 0.9);
-      box-shadow: 0 25px 40px -12px rgba(200, 100, 70, 0.2);
-    }
+    .card:hover { transform: translateY(-8px); border-color: #c97a62; background: rgba(35,35,40,0.9); }
     .card i { font-size: 3rem; color: #c97a62; margin-bottom: 1.2rem; }
     .card p { font-size: 0.95rem; color: #d4c4bc; margin: 1rem 0 1.8rem; }
 
-    /* Fancy button */
     .btn-gem {
       background: linear-gradient(135deg, #b86a50, #9a4a38);
       border: none;
@@ -261,12 +222,11 @@
       font-weight: 700;
       letter-spacing: 2px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+      transition: all 0.3s;
       font-size: 1rem;
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       text-decoration: none;
       font-family: inherit;
       position: relative;
@@ -285,35 +245,23 @@
       opacity: 0;
     }
     .btn-gem:hover::before { left: 120%; opacity: 0.6; }
-    .btn-gem:hover {
-      background: linear-gradient(135deg, #c97a62, #b85a40);
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.5);
-      color: #ffffff;
-    }
-    .btn-gem:active { transform: translateY(2px) scale(0.98); }
-    .btn-gem i { font-size: 1.2rem; transition: transform 0.2s; }
-    .btn-gem:hover i { transform: translateX(5px) scale(1.05); }
+    .btn-gem:hover { background: linear-gradient(135deg, #c97a62, #b85a40); transform: translateY(-4px) scale(1.02); }
     .up-arrow {
       display: inline-block;
       animation: floatGlow 1.4s infinite ease-in-out;
       font-size: 1.2rem;
       margin-left: 4px;
     }
-    @keyframes floatGlow {
-      0%,100% { transform: translateY(0); opacity: 0.8; }
-      50% { transform: translateY(-6px); opacity: 1; text-shadow: 0 0 8px #ffaa90; }
-    }
+    @keyframes floatGlow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-    /* Legacy section */
     .legacy-section {
-      background: rgba(20, 20, 25, 0.7);
+      background: rgba(20,20,25,0.7);
       backdrop-filter: blur(8px);
       border-radius: 60px;
       padding: 2.5rem 2rem;
       margin: 3rem 0 4rem;
       text-align: center;
-      border: 1px solid rgba(180, 100, 80, 0.4);
+      border: 1px solid rgba(180,100,80,0.4);
     }
     .legacy-section h4 { font-size: 0.9rem; letter-spacing: 5px; color: #b8a69c; margin-bottom: 1rem; }
     .legacy-motto {
@@ -325,9 +273,8 @@
       background-clip: text;
       color: transparent;
     }
-    .legacy-sub { margin-top: 1.2rem; font-size: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; color: #b8a69c; }
+    .legacy-sub { margin-top: 1.2rem; font-size: 1rem; max-width: 500px; margin: 1.2rem auto 0; color: #b8a69c; }
 
-    /* Rarity showcase */
     .rarity-showcase {
       display: flex;
       flex-wrap: wrap;
@@ -335,11 +282,10 @@
       justify-content: space-between;
       align-items: center;
       margin: 3rem 0 5rem;
-      background: rgba(20, 20, 25, 0.5);
+      background: rgba(20,20,25,0.5);
       backdrop-filter: blur(5px);
       border-radius: 50px;
       padding: 2rem;
-      border: 1px solid rgba(180, 100, 80, 0.2);
     }
     .rarity-text { flex: 1; }
     .rarity-text h3 {
@@ -355,15 +301,14 @@
 
     .scroll-spacer { height: 60px; }
 
-    /* Social hub */
     .social-hub {
       margin-top: 4rem;
       padding: 2.5rem 2rem;
-      background: rgba(25, 25, 30, 0.7);
+      background: rgba(25,25,30,0.7);
       backdrop-filter: blur(8px);
       border-radius: 60px;
       text-align: center;
-      border: 1px solid rgba(180, 100, 80, 0.35);
+      border: 1px solid rgba(180,100,80,0.35);
     }
     .social-hub h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 1.2rem; color: #d4c4bc; }
     .social-icons { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
@@ -379,13 +324,11 @@
     .social-icon i { font-size: 2.5rem; }
     .social-icon span { font-size: 0.8rem; letter-spacing: 1px; }
     .social-icon:hover { transform: translateY(-5px); color: #c97a62; }
-    .social-icon:hover i { color: #c97a62; text-shadow: 0 0 8px rgba(200, 120, 90, 0.5); }
 
-    /* Footer */
     .footer-cta {
       margin-top: 4rem;
       text-align: center;
-      border-top: 1px solid rgba(180, 100, 80, 0.25);
+      border-top: 1px solid rgba(180,100,80,0.25);
       padding-top: 2.5rem;
     }
     .cta-button {
@@ -398,12 +341,10 @@
       color: #f0e6e0;
       cursor: pointer;
       margin-bottom: 2rem;
-      transition: 0.2s;
     }
     .cta-button:hover { background: linear-gradient(95deg, #a05a48, #c97a62); transform: scale(1.02); }
-    .copyright { font-size: 0.75rem; opacity: 0.6; letter-spacing: 1px; color: #8a7a72; }
+    .copyright { font-size: 0.75rem; opacity: 0.6; color: #8a7a72; }
 
-    /* Scroll to top */
     .scroll-top-btn {
       position: fixed;
       bottom: 30px;
@@ -421,7 +362,6 @@
       opacity: 0;
       transition: all 0.3s ease;
       border: none;
-      font-size: 1.1rem;
       z-index: 99;
     }
     .scroll-top-btn.visible { opacity: 1; }
@@ -432,19 +372,15 @@
       .hero h2 { font-size: 3rem; }
       .whisper-sub { font-size: 1.6rem !important; }
       .legacy-motto { font-size: 2rem; }
-      .card { width: 300px; padding: 2rem 1.2rem; }
+      .card { width: 300px; }
       .rarity-showcase { flex-direction: column; text-align: center; }
       .rarity-text h3 { border-left: none; border-bottom: 2px solid #c97a62; display: inline-block; padding-left: 0; }
-      .social-icons { gap: 1.8rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Dark grey base + cogem.jpg background -->
   <div class="dark-base"></div>
   <div class="cinematic-bg" id="cinematicBg"></div>
-  
-  <!-- Subtle side light gradients -->
   <div class="side-glow-left"></div>
   <div class="side-glow-right"></div>
   <div class="vignette-overlay"></div>
@@ -459,27 +395,22 @@
           <p>"Where Brilliance meets Rarity"</p>
         </div>
         <div class="home-button" id="homeButton">
-          <i class="fas fa-home"></i>
-          <span>HOME</span>
+          <i class="fas fa-home"></i> <span>HOME</span>
         </div>
       </div>
 
       <div class="hero">
-        <div class="gem-icon">
-          <i class="fas fa-crown"></i> <i class="fas fa-gem"></i>
-        </div>
+        <div class="gem-icon"><i class="fas fa-crown"></i> <i class="fas fa-gem"></i></div>
         <h2>LAZANGE<br>GEMS</h2>
         <div class="whisper-sub">Where Brilliance meets Rarity</div>
-        <div class="brilliance-quote">
-          <span>✦</span> discover your treasure <span>✦</span>
-        </div>
+        <div class="brilliance-quote"><span>✦</span> discover your treasure <span>✦</span></div>
       </div>
 
       <div class="action-cards">
         <div class="card">
           <i class="fas fa-hand-pointer"></i>
           <p>Explore our exquisite collection of precious gems — each piece tells a story of rarity, elegance, and timeless beauty.</p>
-          <a href="gems-collection.html" class="btn-gem" id="exploreBtn">
+          <a href="explore.html" class="btn-gem" id="exploreBtn">
             <i class="fas fa-gem"></i> Explore Collection 
             <span class="up-arrow"><i class="fas fa-arrow-up"></i></span>
           </a>
@@ -488,12 +419,8 @@
 
       <div class="legacy-section">
         <h4><i class="fas fa-infinity"></i> THE LEGACY OF GEMS</h4>
-        <div class="legacy-motto">
-          BEYOND ORDINARY BEAUTY
-        </div>
-        <div class="legacy-sub">
-          From sapphires to emeralds, each gem is ethically sourced and masterfully crafted for those who seek the extraordinary.
-        </div>
+        <div class="legacy-motto">BEYOND ORDINARY BEAUTY</div>
+        <div class="legacy-sub">From sapphires to emeralds, each gem is ethically sourced and masterfully crafted for those who seek the extraordinary.</div>
       </div>
 
       <div class="rarity-showcase">
@@ -501,11 +428,7 @@
           <h3>Where Brilliance meets Rarity</h3>
           <p>Every gem holds a universe within — forged over millennia, each stone carries an untold story of earth's ancient magic. At Lazange Gems, we celebrate the full spectrum of precious stones: rubies that burn with passion, sapphires that hold the depth of oceans, emeralds that whisper of forests, and diamonds that capture starlight. <strong>Rarity is not an option, it's our foundation.</strong></p>
         </div>
-        <div class="gem-icons">
-          <i class="fas fa-gem"></i>
-          <i class="fas fa-fire"></i>
-          <i class="fas fa-star-of-life"></i>
-        </div>
+        <div class="gem-icons"><i class="fas fa-gem"></i><i class="fas fa-fire"></i><i class="fas fa-star-of-life"></i></div>
       </div>
 
       <div class="scroll-spacer"></div>
@@ -522,9 +445,7 @@
 
       <div class="footer-cta">
         <button class="cta-button" id="masterCtaBtn">✦ DISCOVER THE COLLECTION ✦</button>
-        <div class="copyright">
-          <i class="far fa-copyright"></i> LAZANGE GEMS — brilliance & rarity incarnate. <br> Explore the world of precious gems.
-        </div>
+        <div class="copyright"><i class="far fa-copyright"></i> LAZANGE GEMS — brilliance & rarity incarnate. <br> Explore the world of precious gems.</div>
       </div>
     </div>
   </div>
@@ -537,43 +458,23 @@
       const masterCta = document.getElementById('masterCtaBtn');
       const homeBtn = document.getElementById('homeButton');
       const scrollTopBtn = document.getElementById('scrollTopBtn');
-      const exploreBtn = document.getElementById('exploreBtn');
-      
       const instagramLink = document.getElementById('instagramLink');
       const facebookLink = document.getElementById('facebookLink');
       const tiktokLink = document.getElementById('tiktokLink');
 
-      if (instagramLink) instagramLink.addEventListener('click', (e) => { e.preventDefault(); alert("✨ Instagram: @lazangegems — coming soon. Join the gem community."); });
+      if (instagramLink) instagramLink.addEventListener('click', (e) => { e.preventDefault(); alert("✨ Instagram: @lazangegems — coming soon."); });
       if (facebookLink) facebookLink.addEventListener('click', (e) => { e.preventDefault(); alert("✨ Facebook: Lazange Gems — where brilliance meets community."); });
       if (tiktokLink) tiktokLink.addEventListener('click', (e) => { e.preventDefault(); alert("✨ TikTok: @lazangegems — exclusive gem content."); });
 
-      if (bg) {
-        window.addEventListener('scroll', () => { bg.style.transform = `translateY(${window.scrollY * 0.12}px)`; });
-      }
-
-      if (exploreBtn) {
-        exploreBtn.addEventListener('click', (e) => {
-          console.log("✨ Lazange Gems: Navigating to gems collection ✨");
-          document.body.style.backgroundColor = "#2a2a2a";
-          setTimeout(() => { document.body.style.backgroundColor = ""; }, 120);
-        });
-      }
-
-      function handleMasterCTA() {
-        window.location.href = 'gems-collection.html';
-      }
-
+      if (bg) { window.addEventListener('scroll', () => { bg.style.transform = `translateY(${window.scrollY * 0.12}px)`; }); }
+      function handleMasterCTA() { window.location.href = 'explore.html'; }
       function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
       function toggleScrollButton() { scrollTopBtn.classList.toggle('visible', window.scrollY > 300); }
-
       if (homeBtn) homeBtn.addEventListener('click', scrollToTop);
       if (scrollTopBtn) scrollTopBtn.addEventListener('click', scrollToTop);
       if (masterCta) masterCta.addEventListener('click', handleMasterCTA);
-      
       window.addEventListener('scroll', toggleScrollButton);
       toggleScrollButton();
-
-      console.log("✨ LAZANGE GEMS — Dark grey theme with side gradients • cogem.jpg background ✨");
     })();
   </script>
 </body>
