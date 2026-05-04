@@ -209,16 +209,28 @@
       background: rgba(40, 40, 45, 0.9);
       box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
     }
-    .product-icon {
-      font-size: 2.8rem;
-      color: #c97a62;
+    /* Product Image Styling */
+    .product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 20px;
       margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover .product-image {
+      transform: scale(1.02);
+    }
+    .product-icon {
+      font-size: 2rem;
+      color: #c97a62;
+      margin-bottom: 0.5rem;
     }
     .product-card h4 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.4rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin: 0.5rem 0;
     }
     .product-price {
       font-size: 1.2rem;
@@ -300,6 +312,7 @@
       .page-title h2 { font-size: 2rem; }
       .section-header h3 { font-size: 1.5rem; }
       .product-card { width: 260px; padding: 1.5rem; }
+      .product-image { height: 150px; }
     }
   </style>
 </head>
@@ -324,7 +337,7 @@
       <p>where every gem tells a story</p>
     </div>
 
-    <!-- RINGS SECTION -->
+    <!-- RINGS SECTION with images: ring.jpg, ring3.jpg, ring2.jpg -->
     <div class="jewelry-section">
       <div class="section-header">
         <i class="fas fa-gem"></i>
@@ -332,24 +345,33 @@
         <span class="sub">eternal elegance</span>
       </div>
       <div class="product-grid">
+        <!-- Ring 1 - ring.jpg -->
         <div class="product-card" data-name="Ember's Kiss Ring" data-price="$4,800">
-          <div class="product-icon"><i class="fas fa-ring"></i></div>
+          <img src="ring.jpg" alt="Ember's Kiss Ring" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="product-icon" style="display: none;"><i class="fas fa-ring"></i></div>
+          <div class="product-icon fallback-icon"><i class="fas fa-ring"></i></div>
           <h4>Ember's Kiss</h4>
           <div class="product-price">$4,800</div>
           <div class="product-desc">Burmese ruby set in 18k rose gold with diamond halo. Vivid red fluorescence.</div>
           <span class="gem-stone">Ruby | 1.2ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
+        <!-- Ring 2 - ring3.jpg -->
         <div class="product-card" data-name="Sapphire Night Ring" data-price="$5,200">
-          <div class="product-icon"><i class="fas fa-gem"></i></div>
+          <img src="ring3.jpg" alt="Sapphire Night Ring" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="product-icon" style="display: none;"><i class="fas fa-gem"></i></div>
+          <div class="product-icon fallback-icon"><i class="fas fa-gem"></i></div>
           <h4>Sapphire Night</h4>
           <div class="product-price">$5,200</div>
           <div class="product-desc">Deep blue Ceylon sapphire, cushion cut, surrounded by pavé diamonds.</div>
           <span class="gem-stone">Sapphire | 1.5ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
+        <!-- Ring 3 - ring2.jpg -->
         <div class="product-card" data-name="Emerald Crown Ring" data-price="$6,800">
-          <div class="product-icon"><i class="fas fa-crown"></i></div>
+          <img src="ring2.jpg" alt="Emerald Crown Ring" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="product-icon" style="display: none;"><i class="fas fa-crown"></i></div>
+          <div class="product-icon fallback-icon"><i class="fas fa-crown"></i></div>
           <h4>Emerald Crown</h4>
           <div class="product-price">$6,800</div>
           <div class="product-desc">Zambian emerald with tapered baguette diamonds. Regal and timeless.</div>
@@ -505,6 +527,18 @@
 
   <script>
     (function() {
+      // Handle fallback for images that fail to load
+      const images = document.querySelectorAll('.product-image');
+      images.forEach(img => {
+        img.addEventListener('error', function() {
+          this.style.display = 'none';
+          const fallbackIcon = this.nextElementSibling;
+          if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
+            fallbackIcon.style.display = 'block';
+          }
+        });
+      });
+
       // Handle all "INQUIRE" buttons
       const inquireBtns = document.querySelectorAll('.btn-inquire');
       inquireBtns.forEach(btn => {
@@ -526,8 +560,7 @@
         });
       }
 
-      // Add hover effect and console log
-      console.log("✨ Lazange Gems — Explore page loaded with Rings, Necklaces, Earrings, Bracelets, Crowns & Limited Editions ✨");
+      console.log("✨ Lazange Gems — Rings now display ring.jpg, ring3.jpg, and ring2.jpg ✨");
     })();
   </script>
 </body>
