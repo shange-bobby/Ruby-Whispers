@@ -13,7 +13,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      cursor: none; /* Hide default cursor for custom sparkle cursor */
     }
 
     body {
@@ -22,82 +21,6 @@
       color: #e8e0d8;
       line-height: 1.4;
       overflow-x: hidden;
-    }
-
-    /* ========== SPARKLE CURSOR STYLES ========== */
-    .sparkle-cursor {
-      position: fixed;
-      width: 28px;
-      height: 28px;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.05s ease;
-      transform: translate(-50%, -50%);
-    }
-    .sparkle-cursor::before,
-    .sparkle-cursor::after {
-      content: "✨";
-      position: absolute;
-      font-size: 20px;
-      opacity: 0;
-      animation: sparkleFloat 0.8s ease-out forwards;
-    }
-    .sparkle-cursor::before {
-      top: -15px;
-      left: -10px;
-      animation-delay: 0s;
-    }
-    .sparkle-cursor::after {
-      bottom: -15px;
-      right: -10px;
-      animation-delay: 0.15s;
-    }
-    @keyframes sparkleFloat {
-      0% {
-        opacity: 1;
-        transform: translate(0, 0) scale(0.5);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-15px, -20px) scale(1.2);
-      }
-    }
-    /* Custom sparkle dot */
-    .cursor-dot {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: radial-gradient(circle, #ffcc99, #ff9966);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 10000;
-      box-shadow: 0 0 8px rgba(255, 150, 100, 0.8);
-      transition: transform 0.08s ease;
-      transform: translate(-50%, -50%);
-    }
-    /* Click ripple effect */
-    .click-ripple {
-      position: fixed;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 200, 150, 0.8), rgba(255, 100, 50, 0));
-      pointer-events: none;
-      z-index: 10001;
-      transform: translate(-50%, -50%);
-      animation: rippleExpand 0.5s ease-out forwards;
-    }
-    @keyframes rippleExpand {
-      0% {
-        width: 0px;
-        height: 0px;
-        opacity: 0.8;
-      }
-      100% {
-        width: 80px;
-        height: 80px;
-        opacity: 0;
-      }
     }
 
     /* Background with cogem.jpg */
@@ -332,20 +255,18 @@
     }
     .btn-inquire {
       background: transparent;
-      border: 1.5px solid #c97a62;
+      border: 1px solid #c97a62;
       color: #d4c4bc;
-      padding: 0.5rem 1.2rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 30px;
       font-size: 0.75rem;
       margin-top: 1rem;
       cursor: pointer;
       transition: 0.2s;
-      font-weight: 500;
     }
     .btn-inquire:hover {
       background: #c97a62;
       color: #1a1a1a;
-      transform: scale(1.02);
     }
 
     /* Featured Banner */
@@ -402,10 +323,6 @@
   <div class="side-glow-right"></div>
   <div class="vignette-overlay"></div>
 
-  <!-- Custom Sparkle Cursor Elements -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="sparkle-cursor" id="sparkleCursor"></div>
-
   <div class="site-wrapper">
     <div class="brand-header">
       <div class="logo">
@@ -438,7 +355,6 @@
           <span class="gem-stone">Ruby | 1.2ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
-        <!-- Updated second ring: Pink Sapphire (removed ceylon sapphire) -->
         <div class="product-card" data-name="Pink Sapphire Night Ring" data-price="$5,200">
           <img src="ring3.jpg" alt="Pink Sapphire Ring" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="product-icon" style="display: none;"><i class="fas fa-gem"></i></div>
@@ -462,7 +378,7 @@
       </div>
     </div>
 
-    <!-- NECKLACES SECTION with images from IMAGES folder -->
+    <!-- NECKLACES SECTION -->
     <div class="jewelry-section">
       <div class="section-header">
         <i class="fas fa-crown"></i>
@@ -470,7 +386,6 @@
         <span class="sub">grace that captivates</span>
       </div>
       <div class="product-grid">
-        <!-- First Necklace - gneck.jpg -->
         <div class="product-card" data-name="Golden Aura Necklace" data-price="$12,500">
           <img src="IMAGES/gneck.jpg" alt="Golden Aura Necklace" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="product-icon" style="display: none;"><i class="fas fa-crown"></i></div>
@@ -481,7 +396,6 @@
           <span class="gem-stone">Ruby | 2.4ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
-        <!-- Second Necklace - pneck.jpg -->
         <div class="product-card" data-name="Pearl Radiance" data-price="$9,800">
           <img src="IMAGES/pneck.jpg" alt="Pearl Radiance Necklace" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="product-icon" style="display: none;"><i class="fas fa-gem"></i></div>
@@ -492,7 +406,6 @@
           <span class="gem-stone">Pearl | 12mm</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
-        <!-- Third Necklace - rneck.jpg -->
         <div class="product-card" data-name="Royal Emerald Cascade" data-price="$7,900">
           <img src="IMAGES/rneck.jpg" alt="Royal Emerald Necklace" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="product-icon" style="display: none;"><i class="fas fa-feather-alt"></i></div>
@@ -506,7 +419,7 @@
       </div>
     </div>
 
-    <!-- EARRINGS SECTION -->
+    <!-- EARRINGS SECTION with images from IMAGES folder -->
     <div class="jewelry-section">
       <div class="section-header">
         <i class="fas fa-star-of-life"></i>
@@ -514,28 +427,37 @@
         <span class="sub">whispers of light</span>
       </div>
       <div class="product-grid">
-        <div class="product-card" data-name="Crimson Echo Drops" data-price="$7,200">
-          <div class="product-icon"><i class="fas fa-fire"></i></div>
-          <h4>Crimson Echo</h4>
+        <!-- First Earring - bearrings.jpg -->
+        <div class="product-card" data-name="Golden Butterfly Earrings" data-price="$7,200">
+          <img src="IMAGES/bearrings.jpg" alt="Golden Butterfly Earrings" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="product-icon" style="display: none;"><i class="fas fa-fire"></i></div>
+          <div class="product-icon fallback-icon"><i class="fas fa-fire"></i></div>
+          <h4>Golden Butterfly</h4>
           <div class="product-price">$7,200</div>
-          <div class="product-desc">Pair of pear-shaped rubies, total 1.8ct, surrounded by micro-pavé diamonds.</div>
-          <span class="gem-stone">Ruby Pair | 1.8ct</span>
+          <div class="product-desc">Exquisite butterfly-shaped earrings with ruby accents and diamond wings. Ethereal and radiant.</div>
+          <span class="gem-stone">Ruby & Diamond | 1.8ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
-        <div class="product-card" data-name="Sapphire Dewdrops" data-price="$6,500">
-          <div class="product-icon"><i class="fas fa-water"></i></div>
-          <h4>Sapphire Dewdrops</h4>
+        <!-- Second Earring - pearring.jpg -->
+        <div class="product-card" data-name="Pearl Cascade Drops" data-price="$6,500">
+          <img src="IMAGES/pearring.jpg" alt="Pearl Cascade Earrings" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="product-icon" style="display: none;"><i class="fas fa-water"></i></div>
+          <div class="product-icon fallback-icon"><i class="fas fa-water"></i></div>
+          <h4>Pearl Cascade</h4>
           <div class="product-price">$6,500</div>
-          <div class="product-desc">Teardrop blue sapphires with diamond halo. Celestial elegance.</div>
-          <span class="gem-stone">Sapphire | 2.0ct</span>
+          <div class="product-desc">Luxurious pearl drop earrings with rose gold settings. Timeless elegance for special occasions.</div>
+          <span class="gem-stone">South Sea Pearl | 14mm</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
-        <div class="product-card" data-name="Emerald Leaves" data-price="$5,900">
-          <div class="product-icon"><i class="fas fa-leaf"></i></div>
-          <h4>Emerald Leaves</h4>
+        <!-- Third Earring - rearrings.jpg -->
+        <div class="product-card" data-name="Royal Ruby Crescents" data-price="$5,900">
+          <img src="IMAGES/rearrings.jpg" alt="Royal Ruby Earrings" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="product-icon" style="display: none;"><i class="fas fa-leaf"></i></div>
+          <div class="product-icon fallback-icon"><i class="fas fa-leaf"></i></div>
+          <h4>Royal Crescent</h4>
           <div class="product-price">$5,900</div>
-          <div class="product-desc">Nature-inspired emerald drop earrings, 18k gold, vibrant green.</div>
-          <span class="gem-stone">Emerald | 1.5ct</span>
+          <div class="product-desc">Crescent-shaped ruby earrings with intricate filigree work. A symbol of royal passion.</div>
+          <span class="gem-stone">Ruby | 2.0ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
       </div>
@@ -617,73 +539,6 @@
 
   <script>
     (function() {
-      // ========== SPARKLE CURSOR WITH CLICK EFFECT ==========
-      const cursorDot = document.getElementById('cursorDot');
-      const sparkleCursor = document.getElementById('sparkleCursor');
-      
-      // Track mouse movement
-      document.addEventListener('mousemove', (e) => {
-        cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-        sparkleCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      });
-      
-      // Create sparkle effect on mouse move (subtle trailing sparkles)
-      let lastX = 0, lastY = 0;
-      document.addEventListener('mousemove', (e) => {
-        const distance = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-        if (distance > 15) {
-          createSparkle(e.clientX, e.clientY);
-          lastX = e.clientX;
-          lastY = e.clientY;
-        }
-      });
-      
-      function createSparkle(x, y) {
-        const sparkle = document.createElement('div');
-        sparkle.innerHTML = '✨';
-        sparkle.style.position = 'fixed';
-        sparkle.style.left = x + 'px';
-        sparkle.style.top = y + 'px';
-        sparkle.style.fontSize = '14px';
-        sparkle.style.pointerEvents = 'none';
-        sparkle.style.zIndex = '9998';
-        sparkle.style.opacity = '0.8';
-        sparkle.style.transform = 'translate(-50%, -50%)';
-        sparkle.style.animation = 'sparkleFloat 0.6s ease-out forwards';
-        document.body.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 600);
-      }
-      
-      // Add click ripple effect on any clickable element
-      document.addEventListener('click', (e) => {
-        const ripple = document.createElement('div');
-        ripple.className = 'click-ripple';
-        ripple.style.left = e.clientX + 'px';
-        ripple.style.top = e.clientY + 'px';
-        document.body.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 500);
-        
-        // Extra sparkle burst on click
-        for (let i = 0; i < 5; i++) {
-          setTimeout(() => {
-            createSparkle(e.clientX + (Math.random() - 0.5) * 30, e.clientY + (Math.random() - 0.5) * 30);
-          }, i * 30);
-        }
-      });
-      
-      // Add the keyframe animation dynamically if not already present
-      if (!document.querySelector('#sparkleKeyframe')) {
-        const styleSheet = document.createElement('style');
-        styleSheet.id = 'sparkleKeyframe';
-        styleSheet.textContent = `
-          @keyframes sparkleFloat {
-            0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
-            100% { opacity: 0; transform: translate(-50%, -80px) scale(1); }
-          }
-        `;
-        document.head.appendChild(styleSheet);
-      }
-      
       // Handle fallback for images that fail to load
       const images = document.querySelectorAll('.product-image');
       images.forEach(img => {
@@ -717,7 +572,7 @@
         });
       }
 
-      console.log("✨ Lazange Gems — Necklace images loaded from IMAGES folder • Pink sapphire ring updated • Sparkle cursor active ✨");
+      console.log("✨ Lazange Gems — Earrings images added: bearrings.jpg, pearring.jpg, rearrings.jpg from IMAGES folder ✨");
     })();
   </script>
 </body>
