@@ -419,7 +419,7 @@
       </div>
     </div>
 
-    <!-- EARRINGS SECTION with updated images from IMAGES folder -->
+    <!-- EARRINGS SECTION -->
     <div class="jewelry-section">
       <div class="section-header">
         <i class="fas fa-star-of-life"></i>
@@ -427,7 +427,6 @@
         <span class="sub">whispers of light</span>
       </div>
       <div class="product-grid">
-        <!-- First Earring - rearrings.jpg -->
         <div class="product-card" data-name="Royal Ruby Crescents" data-price="$7,200">
           <img src="IMAGES/rearrings.jpg" alt="Royal Ruby Earrings" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="product-icon" style="display: none;"><i class="fas fa-fire"></i></div>
@@ -438,7 +437,6 @@
           <span class="gem-stone">Ruby | 2.0ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
-        <!-- Second Earring - bearrings.jpg -->
         <div class="product-card" data-name="Golden Butterfly Earrings" data-price="$6,500">
           <img src="IMAGES/bearrings.jpg" alt="Golden Butterfly Earrings" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="product-icon" style="display: none;"><i class="fas fa-water"></i></div>
@@ -449,7 +447,6 @@
           <span class="gem-stone">Ruby & Diamond | 1.8ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
-        <!-- Third Earring - pearring.jpg -->
         <div class="product-card" data-name="Pearl Cascade Drops" data-price="$5,900">
           <img src="IMAGES/pearring.jpg" alt="Pearl Cascade Earrings" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
           <div class="product-icon" style="display: none;"><i class="fas fa-leaf"></i></div>
@@ -463,7 +460,7 @@
       </div>
     </div>
 
-    <!-- BRACELETS SECTION with images from IMAGES folder -->
+    <!-- BRACELETS SECTION -->
     <div class="jewelry-section">
       <div class="section-header">
         <i class="fas fa-hand-peace"></i>
@@ -504,7 +501,7 @@
       </div>
     </div>
 
-    <!-- CROWNS / TIARAS SECTION -->
+    <!-- CROWNS / TIARAS SECTION with images from IMAGES folder: rcrown.jpg and blcrown.jpg -->
     <div class="jewelry-section">
       <div class="section-header">
         <i class="fas fa-crown"></i>
@@ -512,19 +509,25 @@
         <span class="sub">for the divine</span>
       </div>
       <div class="product-grid">
+        <!-- First Crown - rcrown.jpg (Ruby Crown) -->
         <div class="product-card" data-name="Imperial Ruby Crown" data-price="$28,000">
-          <div class="product-icon"><i class="fas fa-crown"></i></div>
+          <img src="IMAGES/rcrown.jpg" alt="Imperial Ruby Crown" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="product-icon" style="display: none;"><i class="fas fa-crown"></i></div>
+          <div class="product-icon fallback-icon"><i class="fas fa-crown"></i></div>
           <h4>Imperial Ruby</h4>
           <div class="product-price">$28,000</div>
-          <div class="product-desc">Magnificent crown featuring 15 carats of Burmese rubies. For collectors.</div>
+          <div class="product-desc">Magnificent crown featuring 15 carats of Burmese rubies. For collectors and royalty.</div>
           <span class="gem-stone">Ruby | 15ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
+        <!-- Second Crown - blcrown.jpg (Blue Crown / Sapphire Crown) -->
         <div class="product-card" data-name="Sapphire Halo Tiara" data-price="$22,500">
-          <div class="product-icon"><i class="fas fa-crown"></i></div>
+          <img src="IMAGES/blcrown.jpg" alt="Sapphire Halo Tiara" class="product-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="product-icon" style="display: none;"><i class="fas fa-crown"></i></div>
+          <div class="product-icon fallback-icon"><i class="fas fa-crown"></i></div>
           <h4>Sapphire Halo</h4>
           <div class="product-price">$22,500</div>
-          <div class="product-desc">Ethereal tiara with Ceylon sapphires and brilliant diamonds.</div>
+          <div class="product-desc">Ethereal tiara with Ceylon sapphires and brilliant diamonds. A masterpiece of craftsmanship.</div>
           <span class="gem-stone">Sapphire | 8.5ct</span>
           <div class="btn-inquire">INQUIRE</div>
         </div>
@@ -578,7 +581,7 @@
         });
       }
 
-      console.log("✨ Lazange Gems — Earrings images updated: rearrings.jpg, bearrings.jpg, pearring.jpg from IMAGES folder ✨");
+      console.log("✨ Lazange Gems — Crowns/Tiaras images updated: rcrown.jpg and blcrown.jpg from IMAGES folder ✨");
     })();
   </script>
 </body>
