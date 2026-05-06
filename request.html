@@ -1,1 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>The Vault | Lazange Gems - Private Access</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      background-color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      color: #e8e0d8;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    /* Background with cogem.jpg */
+    .cinematic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('cogem.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      opacity: 0.3;
+      z-index: -5;
+      pointer-events: none;
+      filter: brightness(0.7) contrast(1.1);
+    }
+    
+    .dark-base {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1a1a1a;
+      z-index: -4;
+      pointer-events: none;
+    }
+
+    .side-glow-left {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 20%;
+      height: 100%;
+      background: radial-gradient(ellipse at left, rgba(210, 100, 80, 0.1) 0%, rgba(30, 30, 35, 0) 80%);
+      z-index: -3;
+      pointer-events: none;
+    }
+    .side-glow-right {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 20%;
+      height: 100%;
+      background: radial-gradient(ellipse at right, rgba(210, 100, 80, 0.1) 0%, rgba(30, 30, 35, 0) 80%);
+      z-index: -3;
+      pointer-events: none;
+    }
+    
+    .vignette-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.8) 100%);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #2a2a2a; }
+    ::-webkit-scrollbar-thumb { background: #b85a40; border-radius: 8px; }
+
+    .site-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Header */
+    .brand-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(180, 100, 80, 0.3);
+      padding-bottom: 1rem;
+    }
+    .logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #e8ddd4, #d4aa9a, #c97a62);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo p { font-size: 0.7rem; letter-spacing: 3px; color: #b8a69c; }
+    .back-button {
+      background: rgba(30, 30, 35, 0.6);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(180, 100, 80, 0.3);
+      padding: 0.4rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.25s;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: #d4c4bc;
+      font-size: 0.8rem;
+      border-radius: 40px;
+      text-decoration: none;
+    }
+    .back-button i { color: #c97a62; }
+    .back-button:hover { background: rgba(180, 100, 80, 0.25); color: #f0e6e0; }
+
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      margin: 1rem 0 3rem;
+    }
+    .page-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, #f0e6e0, #d4aa9a, #c97a62);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .page-title p {
+      font-family: 'Tangerine', cursive;
+      font-size: 1.5rem;
+      color: #d4c4bc;
+      margin-top: 0.3rem;
+    }
+
+    /* Request Form Section */
+    .request-form-container {
+      background: rgba(25, 25, 30, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      padding: 2.5rem;
+      margin: 2rem 0 3rem;
+      border: 1px solid rgba(200, 120, 90, 0.4);
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+    }
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #d4c4bc;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(15, 15, 20, 0.8);
+      border: 1px solid rgba(200, 120, 90, 0.3);
+      border-radius: 30px;
+      font-size: 0.9rem;
+      color: #e8e0d8;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #c97a62;
+      box-shadow: 0 0 10px rgba(201, 122, 98, 0.3);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .row-2col {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .row-2col .form-group {
+      flex: 1;
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, #b86a50, #9a4a38);
+      border: none;
+      color: #f0e6e0;
+      padding: 1rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #c97a62, #b85a40);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    /* Medium Square Photo Box */
+    .photo-section {
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+    .photo-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: #d4c4bc;
+    }
+    .photo-box {
+      width: 300px;
+      height: 300px;
+      background: rgba(25, 25, 30, 0.8);
+      border: 2px dashed rgba(200, 120, 90, 0.5);
+      border-radius: 24px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .photo-box:hover {
+      border-color: #c97a62;
+      background: rgba(35, 35, 40, 0.9);
+    }
+    .photo-placeholder {
+      text-align: center;
+      color: #b8a69c;
+    }
+    .photo-placeholder i {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: #c97a62;
+    }
+    .photo-placeholder p {
+      font-size: 0.8rem;
+    }
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo-input {
+      display: none;
+    }
+
+    /* Footer */
+    .footer-note {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(180, 100, 80, 0.25);
+      font-size: 0.75rem;
+      color: #8a7a72;
+    }
+
+    @media (max-width: 760px) {
+      .site-wrapper { padding: 1rem 1rem 3rem; }
+      .page-title h2 { font-size: 2rem; }
+      .photo-box { width: 250px; height: 250px; }
+      .request-form-container { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dark-base"></div>
+  <div class="cinematic-bg"></div>
+  <div class="side-glow-left"></div>
+  <div class="side-glow-right"></div>
+  <div class="vignette-overlay"></div>
+
+  <div class="site-wrapper">
+    <div class="brand-header">
+      <div class="logo">
+        <h1>LAZANGE GEMS</h1>
+        <p>"Where Brilliance meets Rarity"</p>
+      </div>
+      <a href="explore.html" class="back-button"><i class="fas fa-arrow-left"></i> BACK TO COLLECTION</a>
+    </div>
+
+    <div class="page-title">
+      <h2>✦ THE VAULT COLLECTION ✦</h2>
+      <p>request private access</p>
+    </div>
+
+    <!-- Personal Information Form -->
+    <div class="request-form-container">
+      <form id="accessRequestForm">
+        <div class="row-2col">
+          <div class="form-group">
+            <label><i class="fas fa-user"></i> FULL NAME</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> EMAIL ADDRESS</label>
+            <input type="email" id="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="row-2col">
+          <div class="form-group">
+            <label><i class="fas fa-phone"></i> PHONE NUMBER</label>
+            <input type="tel" id="phone" placeholder="+1 234 567 8900">
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-map-marker-alt"></i> COUNTRY / REGION</label>
+            <select id="country">
+              <option value="">Select Country</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>France</option>
+              <option>Germany</option>
+              <option>Italy</option>
+              <option>Switzerland</option>
+              <option>UAE</option>
+              <option>Japan</option>
+              <option>Singapore</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-comment"></i> INTEREST / MESSAGE</label>
+          <textarea id="message" placeholder="Tell us which pieces you're interested in or any special requests..."></textarea>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-calendar-alt"></i> PREFERRED CONTACT DATE (Optional)</label>
+          <input type="date" id="preferredDate">
+        </div>
+        <button type="submit" class="submit-btn" id="submitRequestBtn">✦ REQUEST ACCESS ✦</button>
+      </form>
+    </div>
+
+    <!-- Medium Square Photo Box -->
+    <div class="photo-section">
+      <h3>✦ UPLOAD YOUR INSPIRATION ✦</h3>
+      <div class="photo-box" id="photoBox">
+        <div class="photo-placeholder" id="photoPlaceholder">
+          <i class="fas fa-camera"></i>
+          <p>Click to upload an image<br>(square format recommended)</p>
+        </div>
+        <img id="uploadedImage" style="display: none;" alt="Uploaded">
+      </div>
+      <input type="file" id="photoInput" class="photo-input" accept="image/*">
+      <p style="font-size: 0.7rem; color: #8a7a72; margin-top: 0.8rem;">Upload a reference image or inspiration (optional)</p>
+    </div>
+
+    <div class="footer-note">
+      <i class="far fa-copyright"></i> LAZANGE GEMS — All requests are reviewed by a private curator. <br> You will receive a response within 48 hours.
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Photo upload functionality
+      const photoBox = document.getElementById('photoBox');
+      const photoInput = document.getElementById('photoInput');
+      const photoPlaceholder = document.getElementById('photoPlaceholder');
+      const uploadedImage = document.getElementById('uploadedImage');
+
+      photoBox.addEventListener('click', () => {
+        photoInput.click();
+      });
+
+      photoInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            uploadedImage.src = event.target.result;
+            uploadedImage.style.display = 'block';
+            photoPlaceholder.style.display = 'none';
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Form submission handler
+      const form = document.getElementById('accessRequestForm');
+      const submitBtn = document.getElementById('submitRequestBtn');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form values
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const country = document.getElementById('country').value;
+        const message = document.getElementById('message').value.trim();
+        const preferredDate = document.getElementById('preferredDate').value;
+        
+        if (!fullName || !email) {
+          alert("✨ Please enter your full name and email address to continue.");
+          return;
+        }
+        
+        if (!email.includes('@') || !email.includes('.')) {
+          alert("✨ Please enter a valid email address.");
+          return;
+        }
+        
+        // Show success message with collected info
+        let successMsg = `✨ REQUEST RECEIVED ✨\n\nThank you, ${fullName}!\n\n`;
+        successMsg += `We've received your request for private access to The Vault Collection.\n\n`;
+        successMsg += `📧 Confirmation sent to: ${email}\n`;
+        if (phone) successMsg += `📞 Phone: ${phone}\n`;
+        if (country) successMsg += `🌍 Country: ${country}\n`;
+        if (message) successMsg += `\n📝 Your message: "${message.substring(0, 100)}${message.length > 100 ? '...' : ''}"\n`;
+        successMsg += `\nA private curator will contact you within 48 hours.\n\n“Where Brilliance meets Rarity.”`;
+        
+        alert(successMsg);
+        
+        // Optional: reset form after submission (keep photo if uploaded)
+        document.getElementById('fullName').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('country').value = '';
+        document.getElementById('message').value = '';
+        document.getElementById('preferredDate').value = '';
+        
+        // Keep the uploaded image but reset the input
+        photoInput.value = '';
+      });
+      
+      console.log("✨ Request page loaded — Personal info form + square photo box ready ✨");
+    })();
+  </script>
+</body>
+</html>
